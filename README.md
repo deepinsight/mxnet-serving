@@ -1,5 +1,5 @@
 # MXNet model serving
-MXNet model serving study, with aws/mxnet-model-server[https://github.com/awslabs/mxnet-model-server]
+MXNet model serving study, with [awslab/mxnet-model-server](https://github.com/awslabs/mxnet-model-server)
 
 ### Prerequisites
 

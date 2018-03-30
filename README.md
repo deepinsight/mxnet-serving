@@ -21,7 +21,9 @@ install Python, mxnet-model-server, docker, jmeter (for stress tests)
 ### Run production mxnet-model-server (docker + nginx + gunicorn + flask)
 WSGI can spawn multiple workers to serve with one GPU each
 
-`docker pull deepinsight/mms_cpu`
+build docker
+`cd docker`
+`docker build -t deepinsight/mms_cpu .`
 
 `docker run --name mms -p 8080:80 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_cpu`
 

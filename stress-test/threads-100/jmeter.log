@@ -1,0 +1,415 @@
+2018-03-26 16:37:13,124 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2018-03-26 16:37:13,137 INFO o.a.j.JMeter: Loading user properties from: /gpu/data2/huangyue/downloads/apache-jmeter-4.0/bin/user.properties
+2018-03-26 16:37:13,138 INFO o.a.j.JMeter: Loading system properties from: /gpu/data2/huangyue/downloads/apache-jmeter-4.0/bin/system.properties
+2018-03-26 16:37:13,142 INFO o.a.j.JMeter: Copyright (c) 1998-2018 The Apache Software Foundation
+2018-03-26 16:37:13,142 INFO o.a.j.JMeter: Version 4.0 r1823414
+2018-03-26 16:37:13,142 INFO o.a.j.JMeter: java.version=1.8.0_65
+2018-03-26 16:37:13,142 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: os.name=Linux
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: os.arch=amd64
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: os.version=3.10.0-327.el7.x86_64
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: file.encoding=UTF-8
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: Max memory     =1073741824
+2018-03-26 16:37:13,143 INFO o.a.j.JMeter: Available Processors =48
+2018-03-26 16:37:13,146 INFO o.a.j.JMeter: Default Locale=English (EN)
+2018-03-26 16:37:13,147 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2018-03-26 16:37:13,147 INFO o.a.j.JMeter: JMeterHome=/gpu/data2/huangyue/downloads/apache-jmeter-4.0
+2018-03-26 16:37:13,147 INFO o.a.j.JMeter: user.dir  =/gpu/data2/serving/stress-test/threads-100
+2018-03-26 16:37:13,147 INFO o.a.j.JMeter: PWD       =/gpu/data2/serving/stress-test/threads-100
+2018-03-26 16:37:13,147 INFO o.a.j.JMeter: IP: 10.214.160.27 Name: cdsl-gpu-a07 FullName: cdsl-gpu-a07
+2018-03-26 16:37:13,149 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'/gpu/data2/serving/stress-test/threads-100/output'
+2018-03-26 16:37:13,150 INFO o.a.j.s.FileServer: Default base='/gpu/data2/serving/stress-test/threads-100'
+2018-03-26 16:37:13,154 INFO o.a.j.s.FileServer: Set new base='/gpu/data2/serving/stress-test/threads-100'
+2018-03-26 16:37:13,305 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2018-03-26 16:37:13,319 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2018-03-26 16:37:13,323 INFO o.a.j.s.SaveService: Using SaveService properties version 4.0
+2018-03-26 16:37:13,329 INFO o.a.j.s.SaveService: Loading file: test-plan.jmx
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2018-03-26 16:37:13,375 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2018-03-26 16:37:13,407 INFO o.a.j.JMeter: Creating summariser <summary>
+2018-03-26 16:37:13,412 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
+2018-03-26 16:37:13,412 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: log
+2018-03-26 16:37:13,412 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: /gpu/data2/huangyue/downloads/apache-jmeter-4.0/bin/reportgenerator.properties
+2018-03-26 16:37:13,413 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
+2018-03-26 16:37:13,417 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction : {} is empty, not APDEX per transaction customization
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
+2018-03-26 16:37:13,420 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
+2018-03-26 16:37:13,421 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
+2018-03-26 16:37:13,426 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,426 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,426 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,426 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,426 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,427 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,427 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,427 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,428 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2018-03-26 16:37:13,428 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
+2018-03-26 16:37:13,428 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
+2018-03-26 16:37:13,429 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
+2018-03-26 16:37:13,433 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2018-03-26 16:37:13,434 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2018-03-26 16:37:13,434 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2018-03-26 16:37:13,440 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2018-03-26 16:37:13,440 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2018-03-26 16:37:13,799 INFO o.a.j.JMeter: Running test (1522053433799)
+2018-03-26 16:37:13,850 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Scenario 1
+2018-03-26 16:37:13,850 INFO o.a.j.e.StandardJMeterEngine: Starting 100 threads for group Scenario 1.
+2018-03-26 16:37:13,850 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2018-03-26 16:37:13,851 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=100 ramp-up=10 perThread=100.0 delayedStart=false
+2018-03-26 16:37:13,888 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2018-03-26 16:37:13,888 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2018-03-26 16:37:18,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-1
+2018-03-26 16:37:18,882 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = cdsl-gpu-a07
+2018-03-26 16:37:18,890 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2018-03-26 16:37:18,900 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2018-03-26 16:37:18,900 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2018-03-26 16:37:18,900 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2018-03-26 16:37:18,900 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2018-03-26 16:37:18,929 INFO o.a.j.s.FileServer: Stored: /root/serving/images/test/1_1_X.jpg
+2018-03-26 16:37:18,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-2
+2018-03-26 16:37:19,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-3
+2018-03-26 16:37:19,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-4
+2018-03-26 16:37:19,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-5
+2018-03-26 16:37:19,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-6
+2018-03-26 16:37:19,452 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-7
+2018-03-26 16:37:19,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-8
+2018-03-26 16:37:19,652 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-9
+2018-03-26 16:37:19,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-10
+2018-03-26 16:37:19,852 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-11
+2018-03-26 16:37:19,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-12
+2018-03-26 16:37:20,052 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-13
+2018-03-26 16:37:20,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-14
+2018-03-26 16:37:20,252 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-15
+2018-03-26 16:37:20,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-16
+2018-03-26 16:37:20,418 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-1
+2018-03-26 16:37:20,418 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-1
+2018-03-26 16:37:20,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-17
+2018-03-26 16:37:20,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-18
+2018-03-26 16:37:20,614 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-2
+2018-03-26 16:37:20,614 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-2
+2018-03-26 16:37:20,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-19
+2018-03-26 16:37:20,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-20
+2018-03-26 16:37:20,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-21
+2018-03-26 16:37:20,876 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-3
+2018-03-26 16:37:20,876 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-3
+2018-03-26 16:37:20,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-22
+2018-03-26 16:37:21,023 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-4
+2018-03-26 16:37:21,023 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-4
+2018-03-26 16:37:21,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-23
+2018-03-26 16:37:21,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-24
+2018-03-26 16:37:21,225 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-5
+2018-03-26 16:37:21,226 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-5
+2018-03-26 16:37:21,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-25
+2018-03-26 16:37:21,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-26
+2018-03-26 16:37:21,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-27
+2018-03-26 16:37:21,464 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-6
+2018-03-26 16:37:21,464 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-6
+2018-03-26 16:37:21,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-28
+2018-03-26 16:37:21,652 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-29
+2018-03-26 16:37:21,701 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-7
+2018-03-26 16:37:21,702 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-7
+2018-03-26 16:37:21,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-30
+2018-03-26 16:37:21,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-31
+2018-03-26 16:37:21,909 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-8
+2018-03-26 16:37:21,909 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-8
+2018-03-26 16:37:21,952 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-32
+2018-03-26 16:37:22,052 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-33
+2018-03-26 16:37:22,065 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-9
+2018-03-26 16:37:22,065 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-9
+2018-03-26 16:37:22,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-34
+2018-03-26 16:37:22,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-35
+2018-03-26 16:37:22,315 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-10
+2018-03-26 16:37:22,315 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-10
+2018-03-26 16:37:22,352 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-36
+2018-03-26 16:37:22,452 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-37
+2018-03-26 16:37:22,481 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-11
+2018-03-26 16:37:22,481 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-11
+2018-03-26 16:37:22,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-38
+2018-03-26 16:37:22,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-39
+2018-03-26 16:37:22,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-40
+2018-03-26 16:37:22,769 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-12
+2018-03-26 16:37:22,770 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-12
+2018-03-26 16:37:22,852 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-41
+2018-03-26 16:37:22,940 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-13
+2018-03-26 16:37:22,940 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-13
+2018-03-26 16:37:22,952 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-42
+2018-03-26 16:37:23,052 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-43
+2018-03-26 16:37:23,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-44
+2018-03-26 16:37:23,189 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-14
+2018-03-26 16:37:23,189 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-14
+2018-03-26 16:37:23,252 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-45
+2018-03-26 16:37:23,334 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-15
+2018-03-26 16:37:23,335 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-15
+2018-03-26 16:37:23,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-46
+2018-03-26 16:37:23,452 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-47
+2018-03-26 16:37:23,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-48
+2018-03-26 16:37:23,652 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-49
+2018-03-26 16:37:23,652 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-16
+2018-03-26 16:37:23,652 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-16
+2018-03-26 16:37:23,752 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-50
+2018-03-26 16:37:23,838 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-17
+2018-03-26 16:37:23,838 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-17
+2018-03-26 16:37:23,852 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-51
+2018-03-26 16:37:23,952 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-52
+2018-03-26 16:37:24,042 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-18
+2018-03-26 16:37:24,042 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-18
+2018-03-26 16:37:24,052 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-53
+2018-03-26 16:37:24,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-54
+2018-03-26 16:37:24,229 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-19
+2018-03-26 16:37:24,229 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-19
+2018-03-26 16:37:24,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-55
+2018-03-26 16:37:24,352 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-56
+2018-03-26 16:37:24,446 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-20
+2018-03-26 16:37:24,446 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-20
+2018-03-26 16:37:24,452 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-57
+2018-03-26 16:37:24,552 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-58
+2018-03-26 16:37:24,645 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-21
+2018-03-26 16:37:24,645 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-21
+2018-03-26 16:37:24,652 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-59
+2018-03-26 16:37:24,752 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-60
+2018-03-26 16:37:24,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-61
+2018-03-26 16:37:24,875 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-22
+2018-03-26 16:37:24,875 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-22
+2018-03-26 16:37:24,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-62
+2018-03-26 16:37:25,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-63
+2018-03-26 16:37:25,111 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-23
+2018-03-26 16:37:25,111 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-23
+2018-03-26 16:37:25,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-64
+2018-03-26 16:37:25,252 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-65
+2018-03-26 16:37:25,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-66
+2018-03-26 16:37:25,352 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-24
+2018-03-26 16:37:25,353 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-24
+2018-03-26 16:37:25,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-67
+2018-03-26 16:37:25,544 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-25
+2018-03-26 16:37:25,544 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-25
+2018-03-26 16:37:25,551 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-68
+2018-03-26 16:37:25,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-69
+2018-03-26 16:37:25,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-70
+2018-03-26 16:37:25,762 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-26
+2018-03-26 16:37:25,762 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-26
+2018-03-26 16:37:25,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-71
+2018-03-26 16:37:25,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-72
+2018-03-26 16:37:25,975 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-27
+2018-03-26 16:37:25,975 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-27
+2018-03-26 16:37:26,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-73
+2018-03-26 16:37:26,136 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-28
+2018-03-26 16:37:26,136 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-28
+2018-03-26 16:37:26,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-74
+2018-03-26 16:37:26,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-75
+2018-03-26 16:37:26,350 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-29
+2018-03-26 16:37:26,350 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-29
+2018-03-26 16:37:26,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-76
+2018-03-26 16:37:26,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-77
+2018-03-26 16:37:26,551 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-78
+2018-03-26 16:37:26,631 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-30
+2018-03-26 16:37:26,631 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-30
+2018-03-26 16:37:26,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-79
+2018-03-26 16:37:26,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-80
+2018-03-26 16:37:26,838 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-31
+2018-03-26 16:37:26,838 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-31
+2018-03-26 16:37:26,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-81
+2018-03-26 16:37:26,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-82
+2018-03-26 16:37:27,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-83
+2018-03-26 16:37:27,052 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-32
+2018-03-26 16:37:27,052 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-32
+2018-03-26 16:37:27,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-84
+2018-03-26 16:37:27,243 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-33
+2018-03-26 16:37:27,244 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-33
+2018-03-26 16:37:27,251 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-85
+2018-03-26 16:37:27,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-86
+2018-03-26 16:37:27,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-87
+2018-03-26 16:37:27,489 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-34
+2018-03-26 16:37:27,489 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-34
+2018-03-26 16:37:27,551 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-88
+2018-03-26 16:37:27,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-89
+2018-03-26 16:37:27,691 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-35
+2018-03-26 16:37:27,691 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-35
+2018-03-26 16:37:27,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-90
+2018-03-26 16:37:27,851 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-91
+2018-03-26 16:37:27,891 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-36
+2018-03-26 16:37:27,892 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-36
+2018-03-26 16:37:27,951 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-92
+2018-03-26 16:37:28,051 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-93
+2018-03-26 16:37:28,067 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-37
+2018-03-26 16:37:28,067 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-37
+2018-03-26 16:37:28,151 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-94
+2018-03-26 16:37:28,252 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-95
+2018-03-26 16:37:28,276 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-38
+2018-03-26 16:37:28,276 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-38
+2018-03-26 16:37:28,351 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-96
+2018-03-26 16:37:28,451 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-97
+2018-03-26 16:37:28,553 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-98
+2018-03-26 16:37:28,554 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-39
+2018-03-26 16:37:28,554 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-39
+2018-03-26 16:37:28,651 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-99
+2018-03-26 16:37:28,751 INFO o.a.j.t.JMeterThread: Thread started: Scenario 1 1-100
+2018-03-26 16:37:28,755 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-40
+2018-03-26 16:37:28,755 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-40
+2018-03-26 16:37:28,895 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-41
+2018-03-26 16:37:28,896 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-41
+2018-03-26 16:37:29,147 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-42
+2018-03-26 16:37:29,147 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-42
+2018-03-26 16:37:29,393 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-43
+2018-03-26 16:37:29,393 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-43
+2018-03-26 16:37:29,585 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-44
+2018-03-26 16:37:29,585 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-44
+2018-03-26 16:37:29,807 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-45
+2018-03-26 16:37:29,807 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-45
+2018-03-26 16:37:29,936 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-46
+2018-03-26 16:37:29,936 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-46
+2018-03-26 16:37:30,141 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-47
+2018-03-26 16:37:30,141 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-47
+2018-03-26 16:37:30,187 INFO o.a.j.r.Summariser: summary +     52 in 00:00:16 =    3.2/s Avg:  3384 Min:   397 Max:  6233 Err:     0 (0.00%) Active: 53 Started: 100 Finished: 47
+2018-03-26 16:37:30,400 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-48
+2018-03-26 16:37:30,400 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-48
+2018-03-26 16:37:30,580 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-49
+2018-03-26 16:37:30,580 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-49
+2018-03-26 16:37:30,809 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-50
+2018-03-26 16:37:30,809 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-50
+2018-03-26 16:37:31,018 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-51
+2018-03-26 16:37:31,018 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-51
+2018-03-26 16:37:31,205 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-52
+2018-03-26 16:37:31,205 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-52
+2018-03-26 16:37:31,394 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-53
+2018-03-26 16:37:31,394 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-53
+2018-03-26 16:37:31,609 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-54
+2018-03-26 16:37:31,609 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-54
+2018-03-26 16:37:31,902 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-55
+2018-03-26 16:37:31,902 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-55
+2018-03-26 16:37:32,096 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-56
+2018-03-26 16:37:32,097 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-56
+2018-03-26 16:37:32,316 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-57
+2018-03-26 16:37:32,316 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-57
+2018-03-26 16:37:32,466 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-58
+2018-03-26 16:37:32,466 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-58
+2018-03-26 16:37:32,697 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-59
+2018-03-26 16:37:32,697 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-59
+2018-03-26 16:37:32,899 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-60
+2018-03-26 16:37:32,900 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-60
+2018-03-26 16:37:33,113 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-61
+2018-03-26 16:37:33,113 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-61
+2018-03-26 16:37:33,341 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-62
+2018-03-26 16:37:33,342 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-62
+2018-03-26 16:37:33,592 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-63
+2018-03-26 16:37:33,592 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-63
+2018-03-26 16:37:33,773 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-64
+2018-03-26 16:37:33,773 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-64
+2018-03-26 16:37:33,978 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-65
+2018-03-26 16:37:33,979 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-65
+2018-03-26 16:37:34,192 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-66
+2018-03-26 16:37:34,192 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-66
+2018-03-26 16:37:34,392 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-67
+2018-03-26 16:37:34,392 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-67
+2018-03-26 16:37:34,640 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-68
+2018-03-26 16:37:34,640 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-68
+2018-03-26 16:37:34,859 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-69
+2018-03-26 16:37:34,859 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-69
+2018-03-26 16:37:35,066 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-70
+2018-03-26 16:37:35,066 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-70
+2018-03-26 16:37:35,238 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-71
+2018-03-26 16:37:35,238 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-71
+2018-03-26 16:37:35,452 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-72
+2018-03-26 16:37:35,452 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-72
+2018-03-26 16:37:35,677 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-73
+2018-03-26 16:37:35,677 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-73
+2018-03-26 16:37:35,862 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-74
+2018-03-26 16:37:35,862 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-74
+2018-03-26 16:37:36,091 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-75
+2018-03-26 16:37:36,091 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-75
+2018-03-26 16:37:36,289 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-76
+2018-03-26 16:37:36,290 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-76
+2018-03-26 16:37:36,571 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-77
+2018-03-26 16:37:36,571 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-77
+2018-03-26 16:37:36,733 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-78
+2018-03-26 16:37:36,733 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-78
+2018-03-26 16:37:36,982 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-79
+2018-03-26 16:37:36,982 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-79
+2018-03-26 16:37:37,201 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-80
+2018-03-26 16:37:37,201 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-80
+2018-03-26 16:37:37,406 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-81
+2018-03-26 16:37:37,406 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-81
+2018-03-26 16:37:37,568 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-82
+2018-03-26 16:37:37,568 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-82
+2018-03-26 16:37:37,775 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-83
+2018-03-26 16:37:37,775 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-83
+2018-03-26 16:37:37,953 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-84
+2018-03-26 16:37:37,953 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-84
+2018-03-26 16:37:38,189 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-85
+2018-03-26 16:37:38,189 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-85
+2018-03-26 16:37:38,387 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-86
+2018-03-26 16:37:38,388 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-86
+2018-03-26 16:37:38,694 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-87
+2018-03-26 16:37:38,695 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-87
+2018-03-26 16:37:38,821 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-88
+2018-03-26 16:37:38,821 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-88
+2018-03-26 16:37:39,031 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-89
+2018-03-26 16:37:39,032 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-89
+2018-03-26 16:37:39,247 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-90
+2018-03-26 16:37:39,247 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-90
+2018-03-26 16:37:39,558 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-91
+2018-03-26 16:37:39,558 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-91
+2018-03-26 16:37:39,732 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-92
+2018-03-26 16:37:39,732 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-92
+2018-03-26 16:37:39,973 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-93
+2018-03-26 16:37:39,973 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-93
+2018-03-26 16:37:40,155 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-94
+2018-03-26 16:37:40,155 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-94
+2018-03-26 16:37:40,372 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-95
+2018-03-26 16:37:40,372 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-95
+2018-03-26 16:37:40,628 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-96
+2018-03-26 16:37:40,628 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-96
+2018-03-26 16:37:40,781 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-97
+2018-03-26 16:37:40,781 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-97
+2018-03-26 16:37:40,998 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-98
+2018-03-26 16:37:40,998 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-98
+2018-03-26 16:37:41,175 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-99
+2018-03-26 16:37:41,176 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-99
+2018-03-26 16:37:41,459 INFO o.a.j.t.JMeterThread: Thread is done: Scenario 1 1-100
+2018-03-26 16:37:41,459 INFO o.a.j.t.JMeterThread: Thread finished: Scenario 1 1-100
+2018-03-26 16:37:41,460 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2018-03-26 16:37:41,461 INFO o.a.j.r.Summariser: summary +     48 in 00:00:11 =    4.3/s Avg:  8972 Min:  6340 Max: 11629 Err:     0 (0.00%) Active: 0 Started: 100 Finished: 100
+2018-03-26 16:37:41,461 INFO o.a.j.r.Summariser: summary =    100 in 00:00:28 =    3.6/s Avg:  6066 Min:   397 Max: 11629 Err:     0 (0.00%)
+2018-03-26 16:37:41,462 INFO o.a.j.JMeter: Generating Dashboard
+2018-03-26 16:37:41,462 INFO o.a.j.r.d.ReportGenerator: Flushing result collector before report Generation
+2018-03-26 16:37:41,480 INFO o.a.j.r.p.NormalizerSampleConsumer: Using format, 'ms', to parse timeStamp field
+2018-03-26 16:37:41,592 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): beginDate produced 0 samples
+2018-03-26 16:37:41,592 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): endDate produced 0 samples
+2018-03-26 16:37:41,593 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ApdexSummaryConsumer#stopProducing(): apdexSummary produced 0 samples
+2018-03-26 16:37:41,594 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.RequestsSummaryConsumer#stopProducing(): requestsSummary produced 0 samples
+2018-03-26 16:37:41,598 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.StatisticsSummaryConsumer#stopProducing(): statisticsSummary produced 0 samples
+2018-03-26 16:37:41,602 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.Top5ErrorsBySamplerConsumer#stopProducing(): top5ErrorsBySampler produced 0 samples
+2018-03-26 16:37:41,603 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ErrorsSummaryConsumer#stopProducing(): errorsSummary produced 0 samples
+2018-03-26 16:37:41,603 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.HitsPerSecondGraphConsumer#stopProducing(): hitsPerSecond produced 0 samples
+2018-03-26 16:37:41,614 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyVSRequestGraphConsumer#stopProducing(): latencyVsRequest produced 0 samples
+2018-03-26 16:37:41,614 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.SyntheticResponseTimeDistributionGraphConsumer#stopProducing(): syntheticResponseTimeDistribution produced 0 samples
+2018-03-26 16:37:41,615 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.BytesThroughputGraphConsumer#stopProducing(): bytesThroughputOverTime produced 0 samples
+2018-03-26 16:37:41,615 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.CodesPerSecondGraphConsumer#stopProducing(): codesPerSecond produced 0 samples
+2018-03-26 16:37:41,619 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeVSRequestGraphConsumer#stopProducing(): responseTimeVsRequest produced 0 samples
+2018-03-26 16:37:41,619 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): startIntervalControlerFilter produced 700 samples
+2018-03-26 16:37:41,619 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ActiveThreadsGraphConsumer#stopProducing(): activeThreadsOverTime produced 0 samples
+2018-03-26 16:37:41,619 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TimeVSThreadGraphConsumer#stopProducing(): timeVsThreads produced 0 samples
+2018-03-26 16:37:41,620 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeDistributionGraphConsumer#stopProducing(): responseTimeDistribution produced 0 samples
+2018-03-26 16:37:41,620 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TransactionsPerSecondGraphConsumer#stopProducing(): transactionsPerSecond produced 0 samples
+2018-03-26 16:37:41,620 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesGraphConsumer#stopProducing(): responseTimePercentiles produced 0 samples
+2018-03-26 16:37:41,621 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesOverTimeGraphConsumer#stopProducing(): responseTimePercentilesOverTime produced 0 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeOverTimeGraphConsumer#stopProducing(): responseTimesOverTime produced 0 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ConnectTimeOverTimeGraphConsumer#stopProducing(): connectTimeOverTime produced 0 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyOverTimeGraphConsumer#stopProducing(): latenciesOverTime produced 0 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): nameFilter produced 1400 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): dateRangeFilter produced 300 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.NormalizerSampleConsumer#stopProducing(): normalizer produced 100 samples
+2018-03-26 16:37:41,622 INFO o.a.j.r.p.CsvFileSampleSource: produce(): 100 samples produced in 109ms on channel 0
+2018-03-26 16:37:41,622 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'html' of className:'org.apache.jmeter.report.dashboard.HtmlTemplateExporter'
+2018-03-26 16:37:41,625 INFO o.a.j.r.d.HtmlTemplateExporter: Will generate dashboard in folder: /gpu/data2/serving/stress-test/threads-100/output
+2018-03-26 16:37:41,685 INFO o.a.j.r.d.HtmlTemplateExporter: Report will be generated in: /gpu/data2/serving/stress-test/threads-100/output, creating folder structure
+2018-03-26 16:37:41,893 INFO o.a.j.JMeter: Dashboard generated

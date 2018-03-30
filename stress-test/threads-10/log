@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,Latency,IdleTime,Connect
+1522052930596,380,inference,200,OK,Scenario 1 1-1,text,true,,14007,5691,5,5,380,0,65
+1522052930624,598,inference,200,OK,Scenario 1 1-2,text,true,,14007,5703,7,7,598,0,37
+1522052930725,777,inference,200,OK,Scenario 1 1-3,text,true,,14007,5685,10,10,777,0,2
+1522052930824,939,inference,200,OK,Scenario 1 1-4,text,true,,14007,5700,10,10,939,0,2
+1522052930925,1072,inference,200,OK,Scenario 1 1-5,text,true,,14007,5682,10,10,1071,0,2
+1522052931025,1189,inference,200,OK,Scenario 1 1-6,text,true,,14007,5682,9,9,1188,0,2
+1522052931125,1305,inference,200,OK,Scenario 1 1-7,text,true,,14007,5697,8,8,1304,0,1
+1522052931225,1421,inference,200,OK,Scenario 1 1-8,text,true,,14007,5691,7,7,1420,0,2
+1522052931325,1537,inference,200,OK,Scenario 1 1-9,text,true,,14007,5685,6,6,1537,0,1
+1522052931424,1656,inference,200,OK,Scenario 1 1-10,text,true,,14007,5688,6,6,1655,0,2

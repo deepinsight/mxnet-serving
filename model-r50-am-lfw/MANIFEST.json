@@ -1,0 +1,17 @@
+{
+    "Engine": {
+        "MXNet": "1.1.0"
+    }, 
+    "Model": {
+        "Description": "r50", 
+        "Service": "mxnet_vision_service.py", 
+        "Symbol": "model-symbol.json", 
+        "Parameters": "model-0000.params", 
+        "Signature": "signature.json", 
+        "Model-Name": "r50", 
+        "Model-Format": "MXNet-Symbolic"
+    }, 
+    "Model-Archive-Version": 0.1, 
+    "Model-Server": 0.1, 
+    "Model-Archive-Description": "r50"
+}

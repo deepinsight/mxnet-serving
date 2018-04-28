@@ -1,5 +1,7 @@
 FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu14.04
 
+RUN add-apt-repository ppa:webupd8team/java
+
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:certbot/certbot && \
@@ -10,7 +12,7 @@ RUN apt-get update && \
     libopencv-dev \
     graphviz \
     python-dev \
-    openjdk-8-jdk \
+    oracle-java8-installer \
     nginx \
     protobuf-compiler \
     libprotoc-dev \

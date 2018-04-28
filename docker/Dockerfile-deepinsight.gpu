@@ -1,8 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu14.04
-
-RUN apt-get install software-properties-common python-software-properties
-
-RUN add-apt-repository ppa:webupd8team/java
+FROM nvidia/cuda:8.0-cudnn7-devel
 
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
@@ -14,7 +10,7 @@ RUN apt-get update && \
     libopencv-dev \
     graphviz \
     python-dev \
-    oracle-java8-installer \
+    openjdk-8-jdk \
     nginx \
     protobuf-compiler \
     libprotoc-dev \

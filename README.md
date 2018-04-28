@@ -23,13 +23,16 @@ WSGI can spawn multiple workers to serve with one GPU each
 
 build docker
 `cd docker`
-`docker build -t deepinsight/mms_cpu .`
 
-`docker run --name mms -p 8080:80 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_cpu`
+cpu
 
-`docker exec mms bash -c "mxnet-model-server.sh start --mms-config /models/mms_app_cpu.conf"`
+`docker build -t deepinsight/mms_cpu -f Dockerfile-deepinsight.cpu .`
+`docker run --name mms -p 8080:80 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_cpu mxnet-model-server start --mms-config /models/mms_app_cpu.conf"`
 
-multi-gpu mode (deepinsight/mms_gpu) will be provided later
+gpu
+
+`docker build -t deepinsight/mms_gpu -f Dockerfile-deepinsight.gpu .`
+`docker run --name mms -p 8080:80 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_gpu mxnet-model-server start --mms-config /models/mms_app_gpu.conf"`
 
 ### Call mxnet-model-server
 `curl -X POST http://127.0.0.1:8080/r50/predict -F "data=@data/megaage_asian_detected/test/1_1_X.jpg"`

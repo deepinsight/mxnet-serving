@@ -1,6 +1,38 @@
-FROM awsdeeplearningteam/mms_gpu:latest
+FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu14.04
 
-RUN pip install scipy sklearn \
-    && rm -f /etc/nginx/sites-enabled/default
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:certbot/certbot && \
+    apt-get update && \
+    apt-get install -y \
+    build-essential \
+    libatlas-base-dev \
+    libopencv-dev \
+    graphviz \
+    python-dev \
+    openjdk-8-jdk \
+    nginx \
+    protobuf-compiler \
+    libprotoc-dev \
+    python-certbot-nginx \
+    curl \
+    vim \
+    && rm -rf /var/lib/apt/lists/* \
+    && cd /tmp \
+    && curl -O https://bootstrap.pypa.io/get-pip.py \
+    && python get-pip.py \
+    && pip install gevent gunicorn \
+
+RUN pip install mxnet-model-server \
+    && pip uninstall --yes mxnet \
+    && pip install --no-cache-dir mxnet-cu80mkl \
+    && pip install scipy sklearn \
+    && mkdir /mxnet_model_server
+
+COPY mms_app_gpu.conf wsgi.py setup_mms.py mxnet-model-server /mxnet_model_server/
+
+ENV PATH="/mxnet_model_server:${PATH}" MXNET_MODEL_SERVER_GPU_IMAGE=1 gpu_id=0
+
+RUN rm -f /etc/nginx/sites-enabled/default
 
 LABEL maintainer="tyrion.huang@qq.com"

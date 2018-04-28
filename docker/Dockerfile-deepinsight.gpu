@@ -1,5 +1,7 @@
 FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu14.04
 
+RUN apt-get install software-properties-common python-software-properties
+
 RUN add-apt-repository ppa:webupd8team/java
 
 RUN apt-get update && \

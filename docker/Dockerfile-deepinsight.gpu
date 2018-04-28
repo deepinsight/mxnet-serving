@@ -21,7 +21,7 @@ RUN apt-get update && \
     && cd /tmp \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
     && python get-pip.py \
-    && pip install gevent gunicorn \
+    && pip install gevent gunicorn
 
 RUN pip install mxnet-model-server \
     && pip uninstall --yes mxnet \

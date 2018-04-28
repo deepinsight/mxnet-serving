@@ -3,4 +3,5 @@ model-r50-am-lfw/r50.model
 model-r50-am-lfw/r50/
 model-r50-am-lfw/__pycache__/
 model-r50-am-lfw/mms_app.log
+mxnet-r50-model/r50.model
 inference/__pycache__/

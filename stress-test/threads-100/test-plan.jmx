@@ -33,7 +33,7 @@ Make test last 1 minute (see Scheduler)</stringProp>
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path"></stringProp>
@@ -48,8 +48,8 @@ Connect to 5s</stringProp>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="inference" enabled="true">
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/root/serving/images/test/1_1_X.jpg" elementType="HTTPFileArg">
-                <stringProp name="File.path">/root/serving/images/test/1_1_X.jpg</stringProp>
+              <elementProp name="/Users/moon/abc/Codes/mxnet-serving/mxnet-r50-model/image.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">/Users/moon/abc/Codes/mxnet-serving/mxnet-r50-model/image.jpg</stringProp>
                 <stringProp name="File.paramname">data</stringProp>
                 <stringProp name="File.mimetype">image/jpeg</stringProp>
               </elementProp>

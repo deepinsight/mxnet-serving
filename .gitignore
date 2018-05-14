@@ -1,8 +1,7 @@
-model-r50-am-lfw/model-0000.params
-model-r50-am-lfw/r50.model
-model-r50-am-lfw/r50/
-model-r50-am-lfw/__pycache__/
-model-r50-am-lfw/mms_app.log
-mxnet-r50-model/r50.model
-mxnet-r50-model/r50/
+models/r50.model
+models/r50/
+models/age.model
+models/age/
+models/gender.model
+models/gender/
 inference/__pycache__/

@@ -13,14 +13,10 @@
 
 from mms.model_service.mxnet_model_service import MXNetBaseService
 from mms.utils.mxnet import image, ndarray
+import numpy as np
 import sklearn.preprocessing as preprocessing
 
 class MXNetVisionService(MXNetBaseService):
-    """MXNetVisionService defines a fundamental service for image classification task.
-    In preprocess, input image buffer is read to NDArray and resized respect to input
-    shape in signature.
-    In post process, top-5 labels are returned.
-    """
     def _preprocess(self, data):
         img_list = []
         for idx, img in enumerate(data):
@@ -34,4 +30,9 @@ class MXNetVisionService(MXNetBaseService):
         return img_list
 
     def _postprocess(self, data):
-        return preprocessing.normalize(data[0].asnumpy()).flatten().tolist()
+        if self.model_name == 'r50':
+            return preprocessing.normalize(data[0].asnumpy()).flatten().tolist()
+        if self.model_name == 'age':
+            return int(sum(np.argmax(data[0].asnumpy().reshape((100,2)), axis=1)))
+        if self.model_name == 'gender':
+            return np.argmax(data[0].asnumpy().flatten())

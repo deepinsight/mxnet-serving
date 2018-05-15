@@ -17,7 +17,7 @@ install Python, mxnet-model-server, docker, jmeter (for stress tests)
 `mxnet-model-server --models r50=r50.model --service mxnet_vision_service.py --port=8080`
 
 ### Run production mxnet-model-server (docker + nginx + gunicorn + flask)
-`docker run --name mms -p 80:8080 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_gpu mxnet-model-server start --mms-config /models/mms_app_gpu.conf"`
+`nvidia-docker run --name mms -p 80:8080 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_gpu mxnet-model-server start --mms-config /models/mms_app_gpu.conf"`
 
 ### Call mxnet-model-server
 `curl -X POST http://127.0.0.1/r50/predict -F "data=@mxnet-r50-model/image.jpg"`

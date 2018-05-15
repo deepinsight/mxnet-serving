@@ -4,4 +4,5 @@ models/age.model
 models/age/
 models/gender.model
 models/gender/
+models/mxnet_vision_service.pyc
 inference/__pycache__/

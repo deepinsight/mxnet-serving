@@ -22,8 +22,8 @@
         <longProp name="ThreadGroup.start_time">1373789594000</longProp>
         <longProp name="ThreadGroup.end_time">1373789594000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">180</stringProp>
-        <stringProp name="ThreadGroup.delay">5</stringProp>
+        <stringProp name="ThreadGroup.duration">60</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
         <stringProp name="TestPlan.comments">Virtual Users Running Scenario 1. 
 Make test last 1 minute (see Scheduler)</stringProp>
       </ThreadGroup>
@@ -48,8 +48,8 @@ Connect to 5s</stringProp>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="inference" enabled="true">
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/moon/abc/Codes/mxnet-serving/mxnet-r50-model/image.jpg" elementType="HTTPFileArg">
-                <stringProp name="File.path">/Users/moon/abc/Codes/mxnet-serving/mxnet-r50-model/image.jpg</stringProp>
+              <elementProp name="/Users/moon/abc/AI/Codes/mxnet-serving/models/image.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">/Users/moon/abc/AI/Codes/mxnet-serving/models/image.jpg</stringProp>
                 <stringProp name="File.paramname">data</stringProp>
                 <stringProp name="File.mimetype">image/jpeg</stringProp>
               </elementProp>

@@ -167,7 +167,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.9954791666666667, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.9954791666666667, 500, 1500, "inference"], "isController": false}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.999125, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.999125, 500, 1500, "inference"], "isController": false}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -181,7 +181,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 24000, 0, 0.0, 32.309958333333064, 11, 1233, 15.0, 37.0, 295.9900000000016, 323.1322284006301, 3458.8401909172917, 1794.2910203320857], "isController": false}, "titles": ["Label", "#Samples", "KO", "Error %", "Average", "Min", "Max", "90th pct", "95th pct", "99th pct", "Throughput", "Received", "Sent"], "items": [{"data": ["inference", 24000, 0, 0.0, 32.309958333333064, 11, 1233, 15.0, 37.0, 295.9900000000016, 323.1322284006301, 3458.8401909172917, 1794.2910203320857], "isController": false}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 24000, 0, 0.0, 22.54212500000008, 11, 864, 15.0, 26.0, 131.0, 304.0168222641653, 3254.2269422241366, 1688.1439203958869], "isController": false}, "titles": ["Label", "#Samples", "KO", "Error %", "Average", "Min", "Max", "90th pct", "95th pct", "99th pct", "Throughput", "Received", "Sent"], "items": [{"data": ["inference", 24000, 0, 0.0, 22.54212500000008, 11, 864, 15.0, 26.0, 131.0, 304.0168222641653, 3254.2269422241366, 1688.1439203958869], "isController": false}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:

@@ -1,0 +1,59 @@
+2018-05-16 10:44:08,128 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2018-05-16 10:44:08,151 INFO o.a.j.JMeter: Loading user properties from: /usr/local/Cellar/jmeter/4.0/libexec/bin/user.properties
+2018-05-16 10:44:08,151 INFO o.a.j.JMeter: Loading system properties from: /usr/local/Cellar/jmeter/4.0/libexec/bin/system.properties
+2018-05-16 10:44:08,156 INFO o.a.j.JMeter: Copyright (c) 1998-2018 The Apache Software Foundation
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: Version 4.0 r1823414
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: java.version=1.8.0_72
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: os.name=Mac OS X
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: os.arch=x86_64
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: os.version=10.13.4
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: file.encoding=UTF-8
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: Max memory     =1073741824
+2018-05-16 10:44:08,157 INFO o.a.j.JMeter: Available Processors =4
+2018-05-16 10:44:08,161 INFO o.a.j.JMeter: Default Locale=English (EN)
+2018-05-16 10:44:08,161 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2018-05-16 10:44:08,161 INFO o.a.j.JMeter: JMeterHome=/usr/local/Cellar/jmeter/4.0/libexec
+2018-05-16 10:44:08,161 INFO o.a.j.JMeter: user.dir  =/Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/cpu-10
+2018-05-16 10:44:08,161 INFO o.a.j.JMeter: PWD       =/Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/cpu-10
+2018-05-16 10:44:08,163 INFO o.a.j.JMeter: IP: 172.16.0.215 Name: huangyues-MacBook-Pro.local FullName: 172.16.0.215
+2018-05-16 10:44:09,973 INFO o.a.j.g.a.LookAndFeelCommand: Installing Darcula LAF
+2018-05-16 10:44:09,989 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: javax.swing.plaf.metal.MetalLookAndFeel [Darcula]
+2018-05-16 10:44:09,990 INFO o.a.j.JMeter: Setting LAF to: javax.swing.plaf.metal.MetalLookAndFeel
+2018-05-16 10:44:10,000 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2018-05-16 10:44:11,233 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2018-05-16 10:44:11,234 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2018-05-16 10:44:12,293 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:3213
+2018-05-16 10:44:12,302 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:3213
+2018-05-16 10:44:12,314 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/asm-6.0.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/asm-5.0.3.jar
+2018-05-16 10:44:12,314 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/commons-beanutils-1.8.3.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/commons-beanutils-1.7.0.jar
+2018-05-16 10:44:12,315 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/dnsjava-2.1.8.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/dnsjava-2.1.7.jar
+2018-05-16 10:44:12,315 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/guava-19.0.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/guava-11.0.2.jar
+2018-05-16 10:44:12,315 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/httpclient-4.5.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/httpclient-4.5.5.jar
+2018-05-16 10:44:12,316 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/httpcore-4.4.9.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/httpcore-4.4.1.jar
+2018-05-16 10:44:12,316 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/httpmime-4.5.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/httpmime-4.5.5.jar
+2018-05-16 10:44:12,317 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/json-path-2.4.0.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/json-path-2.1.0.jar
+2018-05-16 10:44:12,317 WARN o.j.r.PluginManager: Found JAR conflict: /usr/local/Cellar/jmeter/4.0/libexec/lib/json-smart-2.3.jar and /usr/local/Cellar/jmeter/4.0/libexec/lib/json-smart-2.2.jar
+2018-05-16 10:44:14,182 WARN o.a.j.g.ObjectTableModel: Header count=13 but classes count=11
+2018-05-16 10:44:14,183 WARN o.a.j.g.ObjectTableModel: Header count=13 but writeFunctor count=11
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2018-05-16 10:44:14,945 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2018-05-16 10:44:15,304 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2018-05-16 10:44:15,306 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /usr/local/Cellar/jmeter/4.0/libexec/bin/proxyserver.jks
+2018-05-16 10:44:15,574 INFO o.a.j.s.FileServer: Default base='/Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/cpu-10'
+2018-05-16 10:44:15,990 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2018-05-16 10:44:15,991 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2018-05-16 10:44:15,991 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2018-05-16 10:44:15,991 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2018-05-16 10:44:16,472 INFO o.j.r.PluginManager: Plugins Status: [jpgc-graphs-basic=2.0, jpgc-graphs-additional=2.0, jpgc-autostop=0.1, jpgc-sense=3.4, jpgc-cmd=2.1, jpgc-graphs-composite=2.0, jpgc-csl=0.1, jpgc-functions=2.1, jpgc-casutg=2.5, jpgc-dbmon=0.1, jpgc-graphs-dist=2.0, jpgc-dummy=0.2, jpgc-filterresults=2.1, jpgc-ffw=2.0, jpgc-ggl=2.0, jpgc-httpraw=0.1, jpgc-sts=2.3, jpgc-hadoop=2.0, jpgc-fifo=0.2, jpgc-jms=0.2, jpgc-jmxmon=0.2, jpgc-json=2.6, jpgc-graphs-vs=2.0, jpgc-lockfile=0.1, jpgc-mergeresults=2.1, jpgc-pde=0.1, jpgc-prmctl=0.4, jpgc-perfmon=2.1, jpgc-plugins-manager=0.20, jpgc-redis=0.2, jpgc-webdriver=2.3, jpgc-synthesis=2.1, jpgc-plancheck=2.2, jpgc-tst=2.4, jpgc-udp=0.3, jpgc-csvars=0.1, jpgc-wsc=0.3, jpgc-xml=0.1, jmeter-core=4.0, jmeter-ftp=4.0, jmeter-http=4.0, jmeter-jdbc=4.0, jmeter-jms=4.0, jmeter-junit=4.0, jmeter-java=4.0, jmeter-ldap=4.0, jmeter-mail=4.0, jmeter-mongodb=4.0, jmeter-native=4.0, jmeter-tcp=4.0, jmeter-components=4.0, jpgc-standard=2.0]
+2018-05-16 10:44:38,749 INFO o.a.j.g.a.Load: Loading file: /Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/gpu-500/test-plan.jmx
+2018-05-16 10:44:38,749 INFO o.a.j.s.FileServer: Set new base='/Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/gpu-500'
+2018-05-16 10:44:38,891 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2018-05-16 10:44:38,897 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2018-05-16 10:44:38,898 INFO o.a.j.s.SaveService: Using SaveService properties version 4.0
+2018-05-16 10:44:38,907 INFO o.a.j.s.SaveService: Loading file: /Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/gpu-500/test-plan.jmx
+2018-05-16 10:44:39,232 INFO o.a.j.s.FileServer: Set new base='/Users/moon/Documents/Enterprises/ABC/AI/Codes/mxnet-serving/stress-test/gpu-500'

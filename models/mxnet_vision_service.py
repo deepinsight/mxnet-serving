@@ -36,3 +36,8 @@ class MXNetVisionService(MXNetBaseService):
             return int(sum(np.argmax(data[0].asnumpy().reshape((100,2)), axis=1)))
         if self.model_name == 'gender':
             return np.argmax(data[0].asnumpy().flatten())
+        if self.model_name == 'ga':
+            output = data[0].asnumpy()
+            gender = np.argmax(output[:,0:2].flatten())
+            age = int(sum(np.argmax(output[:,2:202].reshape((100,2)), axis=1)))
+            return {'age': age, 'gender': gender}

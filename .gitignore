@@ -1,8 +1,7 @@
-models/r50.model
+*.model
 models/r50/
-models/age.model
 models/age/
-models/gender.model
 models/gender/
-models/mxnet_vision_service.pyc
+models/ga/
+*.pyc
 inference/__pycache__/

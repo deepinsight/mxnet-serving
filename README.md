@@ -22,15 +22,14 @@ cd models
 mxnet-model-server --models r50=r50.model ga=ga.model --service mxnet_vision_service.py --port=8080
 ```
 ### Run production mxnet-model-server (docker + nginx + gunicorn + flask)
-`````bash
-nvidia-docker run --name mms -p 80:8080 -itd -v <full path to mxnet-r50-model>:/models deepinsight/mms_gpu
-docker exec mms -c "mxnet-model-server start --mms-config /models/mms_app_gpu.conf"
-`````
+```bash
+nvidia-docker run --name mms -p 80:8080 -itd -v <full path to mxnet-serving/models>:/models deepinsight/mms_gpu mxnet-model-server start --mms-config /models/mms_app_gpu.conf
+```
 
 ### Call mxnet-model-server
-`````bash
+```bash
 curl -X POST http://127.0.0.1/r50/predict -F "data=@models/image.jpg"
-`````
+```
 
 ### Stress test
 ```bash

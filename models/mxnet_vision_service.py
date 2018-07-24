@@ -30,7 +30,7 @@ class MXNetVisionService(MXNetBaseService):
         return img_list
 
     def _postprocess(self, data):
-        if self.model_name == 'r50':
+        if self.model_name == 'r50' or self.model_name == 'r100':
             return preprocessing.normalize(data[0].asnumpy()).flatten().tolist()
         if self.model_name == 'age':
             return int(sum(np.argmax(data[0].asnumpy().reshape((100,2)), axis=1)))

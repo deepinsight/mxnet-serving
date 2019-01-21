@@ -1,17 +1,10 @@
 # MXNet model serving
-MXNet model serving study, with [awslab/mxnet-model-server](https://github.com/awslabs/mxnet-model-server)
+Deploy MXNet model serving, with [awslab/mxnet-model-server](https://github.com/awslabs/mxnet-model-server)
 
-### Prerequisites
+### Dependencies
+Python, mxnet, mxnet-model-server, docker, jmeter (for stress tests) 
 
-install Python, mxnet, mxnet-model-server, docker, jmeter (for stress tests) 
-
-### Inference
-```bash
-cd inference
-python inference.py --image=../mxnet-r50-model/image.jpg
-```
-
-### Export mxnet model (.json & .params) to serve (.model)
+### convert mxnet model (.json & .params) to serving model (.model)
 ```bash
 mxnet-model-export --model-name r50 --model-path model-r50-am-lfw
 ```

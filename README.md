@@ -4,7 +4,7 @@ Deploy MXNet model serving, with [awslab/mxnet-model-server](https://github.com/
 ### Dependencies
 Python, mxnet, mxnet-model-server, docker, jmeter (for stress tests) 
 
-### convert mxnet model (.json & .params) to serving model (.model)
+### Convert mxnet model (.json & .params) to serving model (.model)
 ```bash
 mxnet-model-export --model-name r50 --model-path model-r50-am-lfw
 ```

@@ -31,7 +31,7 @@ class MXNetVisionService(MXNetBaseService):
 
     def _postprocess(self, data):
         if self.model_name == 'r50' or self.model_name == 'r100':
-            return preprocessing.normalize(data[0].asnumpy()).flatten().tolist()
+            return data[0].asnumpy().flatten().tolist()
         if self.model_name == 'age':
             return int(sum(np.argmax(data[0].asnumpy().reshape((100,2)), axis=1)))
         if self.model_name == 'gender':

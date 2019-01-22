@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "763d2fdc-905d-4088-a1df-024b3c581ab2",
+		"name": "MXNet model serving",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{SERVER}}/ping",
+					"protocol": "http",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API description",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{SERVER}}/api-description",
+					"protocol": "http",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"api-description"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "face embedding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{SERVER}}/r100/predict",
+					"protocol": "http",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"r100",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "predict gender & age",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{SERVER}}/ga/predict",
+					"protocol": "http",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"ga",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -13,7 +13,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 message(STATUS "tvm root path: ${TVM_ROOT}")
-include_directories(${TVM_ROOT} ${TVM_ROOT}/include/tvm ${TVM_ROOT}/3rdparty/dmlc-core/include ${TVM_ROOT}/3rdparty/dlpack/include)
+include_directories(${TVM_ROOT} ${TVM_ROOT}/include ${TVM_ROOT}/3rdparty/dmlc-core/include ${TVM_ROOT}/3rdparty/dlpack/include)
 
 link_directories(
   ${OpenCV_Install}/lib

@@ -28,10 +28,11 @@ void tvm_r100::parse_output(json & res){
         feature_array.push_back(feature);
         square_sum += feature * feature;
     }
+    /*
     std::cout << "norm: " << sqrt(square_sum) << "\n";
-
     for(auto shape: output_shape)
         std::cout << "shape: " << shape << "\n";
+    */
     res["prediction"] = feature_array;
 
 }

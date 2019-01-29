@@ -20,6 +20,18 @@ link_directories(
   /usr/local/lib
 )
 
-add_executable(test_infer src/infer/test_infer.cpp src/infer/tvm_r100.cpp 
+add_executable(test_infer src/infer/test_infer.cpp src/infer/tvm_r100.cpp src/infer/tvm_mneti.cpp
                           src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
 target_link_libraries(test_infer ${OpenCV_LIBS} pthread dl)
+
+add_executable(bench_multi_model src/infer/bench_multi_model.cpp src/infer/tvm_r100.cpp src/infer/tvm_mneti.cpp
+                                 src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
+target_link_libraries(bench_multi_model ${OpenCV_LIBS} pthread dl)
+
+if (APPLE)
+    link_directories(/usr/local/opt/boost/lib)
+endif()
+find_package ( cppnetlib 0.13.0 REQUIRED )
+include_directories ( ${CPPNETLIB_INCLUDE_DIRS} )
+add_executable(test_http src/http/test_http.cpp)
+target_link_libraries(test_http ${CPPNETLIB_LIBRARIES} boost_system pthread )

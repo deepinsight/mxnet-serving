@@ -28,6 +28,10 @@ add_executable(bench_multi_model src/infer/bench_multi_model.cpp src/infer/tvm_r
                                  src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
 target_link_libraries(bench_multi_model ${OpenCV_LIBS} pthread dl)
 
+add_executable(bench_mix_model src/infer/bench_mix_model.cpp src/infer/tvm_r100.cpp src/infer/tvm_mneti.cpp
+                               src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
+target_link_libraries(bench_mix_model ${OpenCV_LIBS} pthread dl)
+
 if (APPLE)
     link_directories(/usr/local/opt/boost/lib)
 endif()

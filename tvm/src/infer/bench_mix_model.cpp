@@ -29,7 +29,6 @@ int main(int argc, char* argv[]){
     const String keys =
         "{help h usage ?     |                    | print this message }"
         "{path               |/Users/load/code/python/infinivision/tvm-convert/tvm-model | local_id config file }"
-        "{name               |r100                | model name }"
         "{cpu                |skylake             | cpu architect family name }"
         "{image              |test.jpg            | image file path }"
         "{video              |/Users/load/video/camera-244-crop-8p.mov                   | video file path }"
@@ -44,39 +43,33 @@ int main(int argc, char* argv[]){
     }
 
     path = parser.get<String>("path");
-    name = parser.get<String>("name");
     cpu  = parser.get<String>("cpu");
     image  = parser.get<String>("image");
     video  = parser.get<String>("video");
     model_count  = parser.get<int>("model_count");
     struct timeval  tv1,tv2;
     Mat ori_img = imread(image);
-    Mat img;
-    if(name=="r100")
-        resize(ori_img,img,cv::Size(112,112));
-    else if(name=="mneti")
-        resize(ori_img,img,cv::Size(120,120));
-    std::vector<tvm_r100 *> handles;
-    std::vector<tvm_mneti *> handles2;
-    for(int i=0;i<model_count;i++){
-        if(name=="r100")
-            handles.push_back(new tvm_r100(path, name, cpu, 112, 112));
-        else if (name=="mneti")
-            handles2.push_back(new tvm_mneti(path, name, cpu, 120, 120));
-    }
+    Mat img1,img2;
+    resize(ori_img,img1,cv::Size(112,112));
+    resize(ori_img,img2,cv::Size(120,120));
+    tvm_r100  *handle1 = new tvm_r100(path,  "r100",  cpu, 112, 112);
+    tvm_mneti *handle2 = new tvm_mneti(path, "mneti", cpu, 120, 120);
+
     for(int i=0;;i++){
-        Mat roi = img.clone();
-        json features;
-        std::vector<cv::Rect2f>  boxes;
-        std::vector<cv::Point2f> landmarks;
-        std::vector<float>       scores;        
-        int index =  i % model_count;
-        gettimeofday(&tv1,NULL);
-        if(name=="r100"){
-            handles[index]->infer(roi);
-            handles[index]->parse_output(features);
-        } else if (name=="mneti")
-            handles2[index]->detect(roi, boxes, landmarks, scores);
+        
+        gettimeofday(&tv1,NULL);        
+        if(i%2==0){
+            Mat roi = img1.clone();
+            json features;
+            handle1->infer(img1);
+            handle1->parse_output(features);
+        } else {
+            Mat roi = img2.clone();
+            std::vector<cv::Rect2f>  boxes;
+            std::vector<cv::Point2f> landmarks;
+            std::vector<float>       scores;            
+            handle2->detect(roi, boxes, landmarks, scores);
+        }
         gettimeofday(&tv2,NULL);
         std::cout << "infer once, time eclipsed: " <<  getElapse(&tv1, &tv2) << " ms\n";
     }

@@ -32,7 +32,6 @@ int main(int argc, char* argv[]){
         "{cpu                |skylake             | cpu architect family name }"
         "{image              |test.jpg            | image file path }"
         "{video              |/Users/load/video/camera-244-crop-8p.mov                   | video file path }"
-        "{model_count        |2                   | model handle model_count }"
     ;
 
     CommandLineParser parser(argc, argv, keys);

@@ -39,3 +39,14 @@ find_package ( cppnetlib 0.13.0 REQUIRED )
 include_directories ( ${CPPNETLIB_INCLUDE_DIRS} )
 add_executable(test_http src/http/test_http.cpp)
 target_link_libraries(test_http ${CPPNETLIB_LIBRARIES} boost_system pthread )
+
+if(NOT APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCPU_BINDING")
+endif()
+
+include_directories(${PROJECT_SOURCE_DIR}/deps/multipart-parser)
+
+add_executable(tvm_svc src/http/tvm_server.cpp
+                       src/infer/tvm_r100.cpp src/infer/tvm_mneti.cpp
+                       src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
+target_link_libraries(tvm_svc ${OpenCV_LIBS} ${CPPNETLIB_LIBRARIES} boost_system pthread dl)

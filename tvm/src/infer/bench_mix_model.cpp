@@ -12,7 +12,6 @@ string name;
 string cpu;
 string image;
 string video;
-int    model_count;
 
 static float getElapse(struct timeval *tv1,struct timeval *tv2)
 {
@@ -45,7 +44,6 @@ int main(int argc, char* argv[]){
     cpu  = parser.get<String>("cpu");
     image  = parser.get<String>("image");
     video  = parser.get<String>("video");
-    model_count  = parser.get<int>("model_count");
     struct timeval  tv1,tv2;
     Mat ori_img = imread(image);
     Mat img1,img2;

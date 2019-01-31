@@ -1,0 +1,3 @@
+[submodule "tvm/deps/multipart-parser"]
+	path = tvm/deps/multipart-parser
+	url = https://github.com/FooBarWidget/multipart-parser

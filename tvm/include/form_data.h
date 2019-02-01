@@ -161,7 +161,7 @@ onPartData(const char *buffer, size_t start, size_t end, void *userData) {
     printf("onPartData: data length: %lu\n", end-start);
     formDataParser *fdparser = (formDataParser *) userData;
     size_t index = fdparser->fds.size()-1;
-    fdparser->fds[index].data = std::string(buffer + start, end - start);
+    fdparser->fds[index].data.append(std::string(buffer + start, end - start));
 }
 
 static void

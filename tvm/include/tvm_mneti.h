@@ -9,6 +9,8 @@ public:
                              std::vector<cv::Point2f> & target_landmarks,
                              std::vector<float>       & target_scores);
     virtual void parse_output(json & res){}
+    int width;
+    int height;
 private:
     float pixel_means[3] = {0.406, 0.456, 0.485};
     float pixel_stds[3]  = {0.225, 0.224, 0.229};

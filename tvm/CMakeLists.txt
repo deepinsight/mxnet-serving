@@ -48,5 +48,6 @@ include_directories(${PROJECT_SOURCE_DIR}/deps/multipart-parser)
 
 add_executable(tvm_svc src/http/tvm_server.cpp
                        src/infer/tvm_r100.cpp src/infer/tvm_mneti.cpp
-                       src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc)
+                       src/loader/tvm_model.cpp src/loader/tvm_runtime_pack.cc
+                       src/utils/face_align.cpp)
 target_link_libraries(tvm_svc ${OpenCV_LIBS} ${CPPNETLIB_LIBRARIES} boost_system pthread dl)

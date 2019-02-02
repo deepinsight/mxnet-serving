@@ -267,13 +267,14 @@ int main(int argc, char *argv[]) {
         "{ip                 |127.0.0.1           | server ip address }"
         "{port               |8080                | server port }"
         "{path               |/Users/load/code/python/infinivision/tvm-convert/tvm-model | local_id config file }"
-        "{cpu_family         |skylake             | cpu architect family name }"
-        "{shape              |120,120             | detector model shape }"
+        "{cpu-family         |skylake             | cpu architect family name }"
+        "{shape              |150,150             | detector model shape }"
         "{min-width          |70                  | minimal width of input image }"
         "{min-height         |90                  | minimal height of input image }"
         "{min-area           |5000                | minimal area of face bounding box }"
         "{index              |0                   | server instance index for cpu binding }"
-        "{cpu_count          |4                   | core count for cpu binding }"
+        "{cpu-count          |4                   | core count for cpu binding }"
+        "{bind-latency       |3                   | latency for cpu binding }"
     ;
     cv::CommandLineParser parser(argc, argv, keys);
     parser.about("tvm model infer server");
@@ -284,7 +285,7 @@ int main(int argc, char *argv[]) {
 
     // create model handler
     std::string path = parser.get<cv::String>("path");
-    std::string cpu_family  = parser.get<cv::String>("cpu_family");
+    std::string cpu_family  = parser.get<cv::String>("cpu-family");
     std::string model_shape  = parser.get<cv::String>("shape");
     std::string str1 = model_shape.substr(0, model_shape.find(","));
     std::string str2 = model_shape.substr(model_shape.find(",")+1, model_shape.length());
@@ -298,10 +299,10 @@ int main(int argc, char *argv[]) {
     // std::cout << "min-width: " << min_width << "\n";
     // do cpu binding
     #ifdef CPU_BINDING
-    std::string index       = parser.get<int>("index");
-    std::string cpu_count   = parser.get<int>("cpu_count");
-    int bindinglatency = parser.get<int>("bindinglatency"); 
-    std::this_thread::sleep_for(std::chrono::seconds(bindinglatency));
+    int index          = parser.get<int>("index");
+    int cpu_count      = parser.get<int>("cpu-count");
+    int bind_latency   = parser.get<int>("bind-latency"); 
+    std::this_thread::sleep_for(std::chrono::seconds(bind_latency));
     int cpu_min = index * cpu_count;
     int cpu_max = (index + 1) * cpu_count - 1;
     int pid = getpid();

@@ -83,14 +83,14 @@ private:
 
 static void
 onPartBegin(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onPartBegin\n");
+    // printf("onPartBegin\n");
     formDataParser *fdparser = (formDataParser *) userData;
     fdparser->fds.push_back(formData());
 }
 
 static void
 onHeaderField(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onHeaderField: (%s)\n", std::string(buffer + start, end - start).c_str());
+    // printf("onHeaderField: (%s)\n", std::string(buffer + start, end - start).c_str());
     formDataParser *fdparser = (formDataParser *) userData;
     size_t index = fdparser->fds.size()-1;
     fdparser->fds[index].fv.field = std::string(buffer + start, end - start);
@@ -100,7 +100,7 @@ bool parse_disposition(std::string & disp, std::map<std::string, std::string> & 
     std::vector<std::string> entrys;
     boost::split(entrys, disp, boost::is_any_of(";"));
     for(auto & entry: entrys) {
-        std::cout << "entry: " << entry << "\n";
+        // std::cout << "entry: " << entry << "\n";
         std::vector<std::string> tokens;
         boost::split(tokens, entry, boost::is_any_of("="));
         if(tokens.size()!=2){
@@ -108,15 +108,15 @@ bool parse_disposition(std::string & disp, std::map<std::string, std::string> & 
             return false;
         }
         for(auto & token: tokens){
-            std::cout << "token before replace: " << token << "\n";
+            // std::cout << "token before replace: " << token << "\n";
             boost::replace_all(token, "\""," ");
             boost::trim(token);
-            std::cout << "token after trim: " << token << "\n";
+            // std::cout << "token after trim: " << token << "\n";
             if(token.length()==0){
                 std::cout << "token length is 0\n";
                 return false;
             }
-            std::cout << "token: " << token << "\n";
+            // std::cout << "token: " << token << "\n";
         }
         fvs[tokens[0]] = tokens[1];
     }
@@ -125,7 +125,7 @@ bool parse_disposition(std::string & disp, std::map<std::string, std::string> & 
 
 static void
 onHeaderValue(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onHeaderValue: (%s)\n", std::string(buffer + start, end - start).c_str());
+    // printf("onHeaderValue: (%s)\n", std::string(buffer + start, end - start).c_str());
     formDataParser *fdparser = (formDataParser *) userData;
     size_t index = fdparser->fds.size()-1;
     fdparser->fds[index].fv.value = std::string(buffer + start, end - start);
@@ -158,7 +158,7 @@ onHeaderValue(const char *buffer, size_t start, size_t end, void *userData) {
 
 static void
 onPartData(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onPartData: data length: %lu\n", end-start);
+    // printf("onPartData: data length: %lu\n", end-start);
     formDataParser *fdparser = (formDataParser *) userData;
     size_t index = fdparser->fds.size()-1;
     fdparser->fds[index].data.append(std::string(buffer + start, end - start));
@@ -166,12 +166,12 @@ onPartData(const char *buffer, size_t start, size_t end, void *userData) {
 
 static void
 onPartEnd(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onPartEnd\n");
+    // printf("onPartEnd\n");
 }
 
 static void
 onEnd(const char *buffer, size_t start, size_t end, void *userData) {
-    printf("onEnd\n");
+    // printf("onEnd\n");
 }
 
 #endif

@@ -89,7 +89,7 @@ struct tvm_svc {
         server::request::headers_container_type::iterator found =
                 boost::find_if(request.headers, content_type());
         if (found != request.headers.end()) {
-            std::cout << "found content-type header: " << found->name << ": " << found->value << std::endl;
+            // std::cout << "found content-type header: " << found->name << ": " << found->value << std::endl;
             std::string content_type_str = found->value;
             if(content_type_str.find("multipart/form-data")!=0){
                 std::cerr << "content-type is wrong, expected multipart/form-data\n";
@@ -134,19 +134,19 @@ struct tvm_svc {
         boost::system::error_code boost_error, size_t size, 
         server::connection_ptr conn, size_t left2read) {
         if(!boost_error) {
-            std::cout << "read size: " << size << std::endl;
+            // std::cout << "read size: " << size << std::endl;
             req_body.append(boost::begin(range), size);
             size_t left = left2read - size;
             if(left>0) {
                 read_chunk(left, conn);
             } else {
-                std::cout << "FINISHED at " << req_body.size()<< std::endl;
+                // std::cout << "FINISHED at " << req_body.size()<< std::endl;
                 std::cout << "req_body length: " << req_body.length() << "\n";
                 // std::cout << req_body << "\n";
                 // update content-length
                 formDataParser fdparser(req_body.data(), req_body.length(), boundary);
                 if(fdparser.succeeded()){
-                    std::cout << "form data parse success\n" ;
+                    // std::cout << "form data parse success\n" ;
                     /*
                     for(auto & fd: fdparser.fds)  
                         std::cout << "form data, type=" << fd.type << ",name=" 
@@ -181,7 +181,7 @@ struct tvm_svc {
         }
     }
     void read_chunk(size_t left2read, server::connection_ptr conn) {
-        std::cout << "left2read: " << left2read << std::endl;
+        // std::cout << "left2read: " << left2read << std::endl;
         conn->read(
             boost::bind(
                 &tvm_svc::handle_post_read,
@@ -220,7 +220,7 @@ struct tvm_svc {
                 cv::copyMakeBorder( re_img, pad_img, top, bottom, 0, 0, cv::BORDER_CONSTANT );
             }
 
-            std::cout << "padding image size: " << pad_img.size() << "\n";
+            // std::cout << "padding image size: " << pad_img.size() << "\n";
             det->detect(pad_img, boxes, landmarks, scores);
             if(boxes.size()==0){
                 error = "detect no face";
@@ -295,7 +295,7 @@ int main(int argc, char *argv[]) {
     min_width  = parser.get<int>("min-width");
     min_height = parser.get<int>("min-height");
     min_area   = parser.get<int>("min-area");
-    std::cout << "min-width: " << min_width << "\n";
+    // std::cout << "min-width: " << min_width << "\n";
     // do cpu binding
     #ifdef CPU_BINDING
     std::string index       = parser.get<int>("index");

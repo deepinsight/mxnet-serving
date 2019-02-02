@@ -13,26 +13,10 @@ void vec_norm(std::vector<float> &in, std::vector<float> &out){
   }
 }
 
-void tvm_r100::parse_output(json & res){
-    std::vector<float> features;
-    std::vector<float> norm_features;
+void tvm_r100::parse_output(std::vector<float> & features){
+    features.clear();
+    // std::vector<float> norm_features;
     std::vector<int> output_shape;
     tvmOutputOfIndex(get_output, features, output_shape, 0);
-
     assert(features.size()==512);
-
-    // vec_norm(features, norm_features);
-    float square_sum = 0;
-    json feature_array = json::array();
-    for(auto feature: features ){
-        feature_array.push_back(feature);
-        square_sum += feature * feature;
-    }
-    /*
-    std::cout << "norm: " << sqrt(square_sum) << "\n";
-    for(auto shape: output_shape)
-        std::cout << "shape: " << shape << "\n";
-    */
-    res["prediction"] = feature_array;
-
 }

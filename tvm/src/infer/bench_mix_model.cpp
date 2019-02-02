@@ -57,7 +57,7 @@ int main(int argc, char* argv[]){
         gettimeofday(&tv1,NULL);        
         if(i%2==0){
             Mat roi = img1.clone();
-            json features;
+            std::vector<float> features;
             handle1->infer(img1);
             handle1->parse_output(features);
         } else {

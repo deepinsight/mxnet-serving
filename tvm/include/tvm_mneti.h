@@ -4,11 +4,11 @@
 
 class tvm_mneti: public tvm_model{
 public:
-    tvm_mneti(std::string path, std::string name, std::string cpu, int w, int h, int batch=1);
+    tvm_mneti(std::string path, std::string name, std::string cpu, 
+                        int w, int h, int batch=1, int mode=0, int devid=0);
     void detect(cv::Mat& im, std::vector<cv::Rect2f>  & target_boxes,
                              std::vector<cv::Point2f> & target_landmarks,
                              std::vector<float>       & target_scores);
-    virtual void parse_output(json & res){}
     int width;
     int height;
 private:

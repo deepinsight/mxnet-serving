@@ -16,11 +16,11 @@ using json = nlohmann::json;
 
 class tvm_model {
 public:
-    tvm_model(std::string path, std::string name, std::string cpu, int w, int h, int batch=1);
+    tvm_model(std::string path, std::string name, std::string cpu, 
+                                int w, int h, int batch=1, int mode=0,int devid=0);
     virtual ~tvm_model(){}
     virtual void prepare(std::vector<float> & image_data, cv::Mat & img);
     void infer(cv::Mat & img); 
-    virtual void parse_output(json & res) = 0;
 protected:
     std::unique_ptr<tvm::runtime::Module> handle;
     std::unique_ptr<DLTensor> infer_buff;

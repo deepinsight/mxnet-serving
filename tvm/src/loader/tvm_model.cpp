@@ -3,7 +3,8 @@
 #include <fstream>
 #include <cassert>
 
-tvm_model::tvm_model(std::string path, std::string name, std::string cpu, int w, int h, int batch){
+tvm_model::tvm_model(std::string path, std::string name, std::string cpu, int w, int h, 
+                        int batch, int mode, int devid){
     std::string model_path = path + "/" + cpu + "/" + name + "/" + std::to_string(w) + "_" + std::to_string(h) ;
     tvm::runtime::Module mod_syslib = tvm::runtime::Module::LoadFromFile(model_path + "/deploy_lib.so");
     std::ifstream json_in(model_path + "/deploy_graph.json");
@@ -11,6 +12,13 @@ tvm_model::tvm_model(std::string path, std::string name, std::string cpu, int w,
     json_in.close();
     int device_type = kDLCPU;
     int device_id = 0;
+    if(mode==0){
+        device_type = kDLCPU;
+        device_id = 0;
+    } else if(mode==1){
+        device_type = kDLGPU;
+        device_id = devid;
+    }
     // get global function module for graph runtime
     tvm::runtime::Module mod = (*tvm::runtime::Registry::Get("tvm.graph_runtime.create"))(json_data, mod_syslib, device_type, device_id);
     handle.reset(new tvm::runtime::Module(mod));

@@ -46,16 +46,17 @@ int main(int argc, char* argv[]){
 
     Mat img;
 
-    tvm_model *handle,*handle2 = nullptr;
+    tvm_r100 *handle,*handle2 = nullptr;
     if( name=="r100" ){
         resize(ori_img,img,cv::Size(112,112));
         handle = new tvm_r100(path, name, cpu, 112, 112);
         handle->infer(img);
         
-        json features;
+        std::vector<float> features;
         handle->parse_output(features);
-
-        std::cout << "feature json: " << features.dump() << "\n";
+        for(auto feature: features)
+            std::cout << feature << ",";
+        std::cout << "\n";
 
         handle2 = new tvm_r100(path, name, cpu, 112, 112);
         std::thread sub_thread(f);

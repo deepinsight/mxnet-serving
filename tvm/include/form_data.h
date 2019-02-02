@@ -39,7 +39,8 @@ public:
         FormDataParseError,
         DispositionParseError,
         ContentFormtError,
-        ContentNameError
+        ContentNameError,
+        ContentNoFileNameError
     };
     formDataParser(const char * data_, size_t len_, std::string boundary): 
                              parser(boundary), data(data_),len(len_){
@@ -66,6 +67,8 @@ public:
             return "form content type error, only support image/jpeg";
         else if(state==ContentNameError)
             return "form content name error, only support name=data";
+        else if(state==ContentNoFileNameError)
+            return "no filename in content disposition";
         else
             return "no error";
 	}
@@ -128,16 +131,17 @@ onHeaderValue(const char *buffer, size_t start, size_t end, void *userData) {
     // printf("onHeaderValue: (%s)\n", std::string(buffer + start, end - start).c_str());
     formDataParser *fdparser = (formDataParser *) userData;
     size_t index = fdparser->fds.size()-1;
-    fdparser->fds[index].fv.value = std::string(buffer + start, end - start);
-    if(fdparser->fds[index].fv.field == "Content-Type")
-        if(fdparser->fds[index].fv.value == "image/jpeg")
-            fdparser->fds[index].type = formData::Type::JPEG;
+    formData & fd = fdparser->fds[index];
+    fd.fv.value = std::string(buffer + start, end - start);
+    if(fd.fv.field == "Content-Type")
+        if(fd.fv.value == "image/jpeg")
+            fd.type = formData::Type::JPEG;
         else {
             fdparser->state = formDataParser::State::ContentFormtError;
             return;
         }
-    else if(fdparser->fds[index].fv.field == "Content-Disposition") {
-        std::string disp = fdparser->fds[index].fv.value;
+    else if(fd.fv.field == "Content-Disposition") {
+        std::string disp = fd.fv.value;
         auto disp_start = disp.find("form-data;");
         if(disp_start!=0){
             fdparser->state = formDataParser::State::DispositionParseError;
@@ -145,12 +149,16 @@ onHeaderValue(const char *buffer, size_t start, size_t end, void *userData) {
             return;
         }
         disp = disp.substr(10,disp.length());
-        if(!parse_disposition(disp, fdparser->fds[index].disposition)){
+        if(!parse_disposition(disp, fd.disposition)){
             fdparser->state = formDataParser::State::DispositionParseError;
             return;
         }
-        if(fdparser->fds[index].disposition["name"]!="data"){
+        if(fd.disposition["name"]!="data"){
             fdparser->state = formDataParser::State::ContentNameError;
+            return;
+        }
+        if(fd.disposition.find("filename")==fd.disposition.end()){
+            fdparser->state = formDataParser::State::ContentNoFileNameError;
             return;
         }
     }

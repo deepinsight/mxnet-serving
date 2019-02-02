@@ -77,7 +77,7 @@ int main(int argc, char* argv[]){
     }
     for(int i=0;;i++){
         Mat roi = img.clone();
-        json features;
+        std::vector<float> features;
         std::vector<cv::Rect2f>  boxes;
         std::vector<cv::Point2f> landmarks;
         std::vector<float>       scores;        

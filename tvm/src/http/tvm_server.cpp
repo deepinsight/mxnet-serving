@@ -4,6 +4,7 @@
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+#include "base64.h"
 
 namespace http = boost::network::http;
 
@@ -57,7 +58,7 @@ struct tvm_svc {
         }
     };
     inline void make_response(server::connection_ptr & connection){
-        result["error"] = error;
+        result["result_info"] = result_info;
         res_body = result.dump()+"\n";
         headers[3].value = std::to_string(res_body.length());
         connection->set_headers(boost::make_iterator_range(headers, headers + 4));
@@ -78,11 +79,11 @@ struct tvm_svc {
         res_body.clear();
         boundary.clear();
         result.clear();
-        error.clear();
+        result_info.clear();
         if(request.method != "POST"){
             std::cerr << "request method must be post\n";
             connection->set_status(server::connection::not_supported);
-            error = "request method must be post";
+            result_info = "request method must be post";
             make_response(connection);
             return;
         }
@@ -93,7 +94,7 @@ struct tvm_svc {
             std::string content_type_str = found->value;
             if(content_type_str.find("multipart/form-data")!=0){
                 std::cerr << "content-type is wrong, expected multipart/form-data\n";
-                error = "content-type is wrong, expected multipart/form-data";           
+                result_info = "content-type is wrong, expected multipart/form-data";           
                 connection->set_status(server::connection::bad_request);
                 make_response(connection);
                 return;
@@ -101,7 +102,7 @@ struct tvm_svc {
                 size_t boundary_start = content_type_str.find("boundary=");
                 if(boundary_start<0) {
                     std::cerr << "can't find boundary\n";
-                    error = "can't find boundary";
+                    result_info = "can't find boundary";
                     connection->set_status(server::connection::bad_request);
                     make_response(connection);
                     return;                    
@@ -111,7 +112,7 @@ struct tvm_svc {
             }
         } else {
             std::cerr << "can not found content-type in header\n";
-            error = "can not found content-type in header";           
+            result_info = "can not found content-type in header";           
             connection->set_status(server::connection::bad_request);
             make_response(connection);
             return;
@@ -122,7 +123,7 @@ struct tvm_svc {
             cl = atoi(std::string(found->value).c_str());
         else {
             std::cerr << "can not found content-length in header\n";
-            error = "can not found content-length in header";
+            result_info = "can not found content-length in header";
             connection->set_status(server::connection::bad_request);
             make_response(connection);
             return;
@@ -141,7 +142,7 @@ struct tvm_svc {
                 read_chunk(left, conn);
             } else {
                 // std::cout << "FINISHED at " << req_body.size()<< std::endl;
-                std::cout << "req_body length: " << req_body.length() << "\n";
+                // std::cout << "req_body length: " << req_body.length() << "\n";
                 // std::cout << req_body << "\n";
                 // update content-length
                 formDataParser fdparser(req_body.data(), req_body.length(), boundary);
@@ -158,23 +159,20 @@ struct tvm_svc {
                                                         << "\n";
                     */
                     // face detect align padding recognize
-
-                    if(!face_prcocess(fdparser.fds[0].data)){
-                        std::cout << "image data process error\n";
-                        conn->set_status(server::connection::bad_request);
-                        make_response(conn);
-                        return;
-                    }               
+                    result = json::array();
+                    for(auto & fd :fdparser.fds)
+                        face_prcocess(fd);
+                    conn->set_status(server::connection::ok);
+                    res_body = result.dump()+"\n";
+                    headers[3].value = std::to_string(res_body.length());
+                    conn->set_headers(boost::make_iterator_range(headers, headers + 4));
+                    conn->write(res_body);
                 } else {
                     std::cout << "form data parse error: " << fdparser.getErrorMessage() << "\n";
-                    error = "form data parse error: " + fdparser.getErrorMessage();
+                    result_info = "form data parse error: " + fdparser.getErrorMessage();
                     conn->set_status(server::connection::bad_request);
                     make_response(conn);
-                    return;
                 }
-                conn->set_status(server::connection::ok);
-                make_response(conn);
-                return;
             }
         } else {
             std::cout << "boost error: " << boost_error.message() << "\n";
@@ -190,16 +188,20 @@ struct tvm_svc {
                 )
             );
     }
-    bool face_prcocess(std::string & img_str){
+    void face_prcocess(formData & fd){
+        json entry;
+        entry["filename"] = fd.disposition["filename"];
         try{
-            cv::Mat img = cv::imdecode(cv::Mat(1, img_str.size(), CV_8UC1, (uchar *) img_str.data()), CV_LOAD_IMAGE_COLOR);
+            cv::Mat img = cv::imdecode(cv::Mat(1, fd.data.size(), CV_8UC1, (uchar *) fd.data.data()), CV_LOAD_IMAGE_COLOR);
             std::vector<cv::Rect2f>  boxes;
             std::vector<cv::Point2f> landmarks;
             std::vector<float>       scores;
             std::cout << "decode image size: " << img.size() << "\n";
-            if(img.cols<min_width or img.rows<min_height){
-                error = "input image size too small: " + std::to_string(img.cols) + "*" + std::to_string(img.rows);
-                return false;
+            if(img.cols<min_width or img.rows<min_height){                
+                entry["state"] = -1;
+                entry["error"] = "input image size too small: " + std::to_string(img.cols) + "*" + std::to_string(img.rows);
+                result.push_back(entry);
+                return;
             }
             cv::Mat re_img,pad_img;
             if(img.rows > img.cols){
@@ -223,31 +225,47 @@ struct tvm_svc {
             // std::cout << "padding image size: " << pad_img.size() << "\n";
             det->detect(pad_img, boxes, landmarks, scores);
             if(boxes.size()==0){
-                error = "detect no face";
-                return false;
+                entry["state"] = -2;
+                entry["error"] = "detect no face";
+                result.push_back(entry);
+                return;                
             } else if (boxes.size()>1) {
-                error = "detect more than one face: " + std::to_string(boxes.size());
-                return false;
+                entry["state"] = -3;
+                entry["error"] = "detect more than one face: " + std::to_string(boxes.size());
+                result.push_back(entry);
+                return;
             }
             auto & box = boxes[0];
             if(box.area()<min_area){
-                error = "face area(" + std::to_string(box.area()) + ") is tool small";
-                return false;
+                entry["state"] = -4;
+                entry["error"] =  "face area(" + std::to_string(box.area()) + ") is tool small";
+                result.push_back(entry);
+                return;  
             }
             cv::Mat aligned_img = face_align.Align(img, landmarks);
             if(aligned_img.empty()){
-                error = "failed to find similar transform matrix for face alignment";
-                return false;
+                entry["state"] = -5;
+                entry["error"] =  "failed to find similar transform matrix for face alignment";
+                result.push_back(entry);
+                return;
             }
+            
             embeding->infer(aligned_img);
-            embeding->parse_output(result);
-            return true;
+            std::vector<float> features;
+            embeding->parse_output(features);
+            entry["state"] = 0;
+            entry["age"] = 0;
+            entry["gender"] = 0;
+            std::string features_encode = base64_encode((unsigned char* )features.data(), features.size()*sizeof(float) );
+            entry["embedding"] = features_encode;
+            result.push_back(entry);
         }
         catch(std::exception & e) {
             std::cout << e.what() << "\n";
-            error += "opencv exception: ";
-            error += e.what();
-            return false;
+            entry["state"] = -6;
+            entry["error"]  = "opencv exception: ";
+            entry["error"] += e.what();
+            result.push_back(entry);
         }
     }
 
@@ -256,7 +274,7 @@ private:
     std::string boundary;
     std::string res_body;
     json result;
-    std::string error;
+    std::string result_info;
 
 };
 
@@ -266,13 +284,14 @@ int main(int argc, char *argv[]) {
         "{help h usage ?     |                    | print this message }"
         "{ip                 |127.0.0.1           | server ip address }"
         "{port               |8080                | server port }"
+        "{mode               |0                   | mode 0 cpu, mode 1 gpu }"
         "{path               |/Users/load/code/python/infinivision/tvm-convert/tvm-model | local_id config file }"
         "{cpu-family         |skylake             | cpu architect family name }"
         "{shape              |150,150             | detector model shape }"
         "{min-width          |70                  | minimal width of input image }"
         "{min-height         |90                  | minimal height of input image }"
         "{min-area           |5000                | minimal area of face bounding box }"
-        "{index              |0                   | server instance index for cpu binding }"
+        "{index              |0                   | cpu mode: server instance index for cpu binding; gpu mode: gpu card }"
         "{cpu-count          |4                   | core count for cpu binding }"
         "{bind-latency       |3                   | latency for cpu binding }"
     ;
@@ -285,33 +304,37 @@ int main(int argc, char *argv[]) {
 
     // create model handler
     std::string path = parser.get<cv::String>("path");
+    int mode         = parser.get<int>("mode");
+    int index        = parser.get<int>("index");    
     std::string cpu_family  = parser.get<cv::String>("cpu-family");
     std::string model_shape  = parser.get<cv::String>("shape");
     std::string str1 = model_shape.substr(0, model_shape.find(","));
     std::string str2 = model_shape.substr(model_shape.find(",")+1, model_shape.length());
     int width  = atoi(str1.c_str());
     int height = atoi(str2.c_str());
-    det      = new tvm_mneti(path, "mneti", cpu_family, width, height);
-    embeding = new tvm_r100 (path, "r100",  cpu_family, 112, 112);
+    det      = new tvm_mneti(path, "mneti", cpu_family, width, height,1,mode,index);
+    embeding = new tvm_r100 (path, "r100",  cpu_family, 112, 112,1,mode,index);
     min_width  = parser.get<int>("min-width");
     min_height = parser.get<int>("min-height");
     min_area   = parser.get<int>("min-area");
     // std::cout << "min-width: " << min_width << "\n";
     // do cpu binding
     #ifdef CPU_BINDING
-    int index          = parser.get<int>("index");
-    int cpu_count      = parser.get<int>("cpu-count");
-    int bind_latency   = parser.get<int>("bind-latency"); 
-    std::this_thread::sleep_for(std::chrono::seconds(bind_latency));
-    int cpu_min = index * cpu_count;
-    int cpu_max = (index + 1) * cpu_count - 1;
-    int pid = getpid();
-    std::string taskset_cmd = "taskset -cap " 
-                            + std::to_string(cpu_min) + "-" 
-                            + std::to_string(cpu_max) + " " 
-                            + std::to_string(pid);
-    std::cout << taskset_cmd << "\n";
-    system(taskset_cmd.c_str());
+    if(mode==0){
+        int cpu_count      = parser.get<int>("cpu-count");
+        int bind_latency   = parser.get<int>("bind-latency");
+        std::this_thread::sleep_for(std::chrono::seconds(bind_latency));
+        int cpu_min = index * cpu_count;
+        int cpu_max = (index + 1) * cpu_count - 1;
+        int pid = getpid();
+        std::string taskset_cmd = "taskset -cap " 
+                                + std::to_string(cpu_min) + "-" 
+                                + std::to_string(cpu_max) + " " 
+                                + std::to_string(pid);
+        std::cout << taskset_cmd << "\n";
+        system(taskset_cmd.c_str());
+    }
+
     #endif
     // run http server
     std::string ip   = parser.get<cv::String>("ip");

@@ -25,15 +25,22 @@ typedef http::server<tvm_svc> server;
 
 #include "tvm_r100.h"
 #include "tvm_mneti.h"
+#include "tvm_gender.h"
+#include "tvm_age.h"
 
 #include "form_data.h"
 #include "face_align.h"
 
+#include "face_param.h"
+
 tvm_mneti * det;
 tvm_r100  * embeding;
-int min_width =70;
-int min_height=90;
-int min_area=5000;
+tvm_gender * gender;
+tvm_age    * age;
+
+extern int min_width;
+extern int min_height;
+extern int min_area;
 
 class FaceAlign face_align = FaceAlign();
 
@@ -235,13 +242,22 @@ struct tvm_svc {
                 result.push_back(entry);
                 return;
             }
-            auto & box = boxes[0];
+            auto & box      = boxes[0];
             if(box.area()<min_area){
                 entry["state"] = -4;
                 entry["error"] =  "face area(" + std::to_string(box.area()) + ") is tool small";
                 result.push_back(entry);
                 return;  
             }
+            int pose_type=0;
+            if(!check_large_pose(landmarks, box, &pose_type)){
+                entry["state"] = -7;
+                entry["error"] =  "face pose skew";
+                entry["pose_type"] = pose_type;
+                result.push_back(entry);
+                return;
+            }
+            entry["pose_type"] = pose_type;
             cv::Mat aligned_img = face_align.Align(img, landmarks);
             if(aligned_img.empty()){
                 entry["state"] = -5;
@@ -249,15 +265,16 @@ struct tvm_svc {
                 result.push_back(entry);
                 return;
             }
-            
+            entry["state"] = 0;
             embeding->infer(aligned_img);
             std::vector<float> features;
             embeding->parse_output(features);
-            entry["state"] = 0;
-            entry["age"] = 0;
-            entry["gender"] = 0;
             std::string features_encode = base64_encode((unsigned char* )features.data(), features.size()*sizeof(float) );
-            entry["embedding"] = features_encode;
+            entry["embedding"] = features_encode;                       
+            gender->infer(aligned_img);
+            entry["gender"] = gender->get_gender();
+            age->infer(aligned_img);
+            entry["age"] = age->get_age();
             result.push_back(entry);
         }
         catch(std::exception & e) {
@@ -282,15 +299,13 @@ int main(int argc, char *argv[]) {
 
     const cv::String keys =
         "{help h usage ?     |                    | print this message }"
-        "{ip                 |127.0.0.1           | server ip address }"
+        "{config             |../conf/face_param.toml       | face param conf file }"
+        "{ip                 |0.0.0.0             | server ip address }"
         "{port               |8080                | server port }"
         "{mode               |0                   | mode 0 cpu, mode 1 gpu }"
         "{path               |/Users/load/code/python/infinivision/tvm-convert/tvm-model | local_id config file }"
         "{cpu-family         |skylake             | cpu architect family name }"
-        "{shape              |150,150             | detector model shape }"
-        "{min-width          |70                  | minimal width of input image }"
-        "{min-height         |90                  | minimal height of input image }"
-        "{min-area           |5000                | minimal area of face bounding box }"
+        "{shape              |160,160             | detector model shape }"
         "{index              |0                   | cpu mode: server instance index for cpu binding; gpu mode: gpu card }"
         "{cpu-count          |4                   | core count for cpu binding }"
         "{bind-latency       |3                   | latency for cpu binding }"
@@ -305,23 +320,41 @@ int main(int argc, char *argv[]) {
     // create model handler
     std::string path = parser.get<cv::String>("path");
     int mode         = parser.get<int>("mode");
-    int index        = parser.get<int>("index");    
+    int index        = parser.get<int>("index");
+    int cpu_count    = parser.get<int>("cpu-count");
+    if(mode==0){
+        char env_omp_num_threads[4];
+        int omp_num_threads = cpu_count;
+        snprintf(env_omp_num_threads,4,"%d",omp_num_threads);
+        if(setenv("OMP_NUM_THREADS",env_omp_num_threads,1)!=0){
+            std::cout << "set env OMP_NUM_THREADS error no: " << errno << "\n";
+            perror("");
+            exit(1);
+        }
+    }
     std::string cpu_family  = parser.get<cv::String>("cpu-family");
     std::string model_shape  = parser.get<cv::String>("shape");
     std::string str1 = model_shape.substr(0, model_shape.find(","));
     std::string str2 = model_shape.substr(model_shape.find(",")+1, model_shape.length());
     int width  = atoi(str1.c_str());
     int height = atoi(str2.c_str());
-    det      = new tvm_mneti(path, "mneti", cpu_family, width, height,1,mode,index);
-    embeding = new tvm_r100 (path, "r100",  cpu_family, 112, 112,1,mode,index);
-    min_width  = parser.get<int>("min-width");
-    min_height = parser.get<int>("min-height");
-    min_area   = parser.get<int>("min-area");
-    // std::cout << "min-width: " << min_width << "\n";
+    if(mode==0){
+        det      = new tvm_mneti (path, "mneti", cpu_family, width, height,1,mode,index);
+        embeding = new tvm_r100  (path, "r100",  cpu_family, 112, 112, 1, mode, index);
+        gender   = new tvm_gender(path, "gender_slim",cpu_family, 112, 112, 1, mode, index);
+        age      = new tvm_age   (path, "age_slim",   cpu_family, 112, 112, 1, mode, index);
+    } else if (mode==1) {
+        det      = new tvm_mneti (path, "mneti", "nvidia", width, height, 1, mode, index);
+        embeding = new tvm_r100  (path, "r100",  "nvidia", 112, 112, 1, mode, index);
+        gender   = new tvm_gender(path, "gender_slim","nvidia", 112, 112, 1, mode, index);
+        age      = new tvm_age   (path, "age_slim",   "nvidia", 112, 112, 1, mode, index);
+    }
+
+    std::string config  = parser.get<cv::String>("config");
+    read_conf(config);    
     // do cpu binding
     #ifdef CPU_BINDING
     if(mode==0){
-        int cpu_count      = parser.get<int>("cpu-count");
         int bind_latency   = parser.get<int>("bind-latency");
         std::this_thread::sleep_for(std::chrono::seconds(bind_latency));
         int cpu_min = index * cpu_count;

@@ -1,0 +1,13 @@
+[facePoseType]
+  threshold  = [5.0,4.0,4.0,6.0]
+  min_face_size = 5000
+  min_ratio = 0.66
+  max_ratio = 1
+  min_eye_len   = 18.0
+  min_mouse_len = 12.0
+[detector]
+  threshold     = 0.95
+  nms_thredhold = 0.3
+  min_width  = 70
+  min_height = 90
+  min_area   = 5000

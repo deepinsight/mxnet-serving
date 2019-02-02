@@ -3,9 +3,9 @@
 #include <fstream>
 #include <cassert>
 
-tvm_model::tvm_model(std::string path, std::string name, std::string cpu, int w, int h, 
+tvm_model::tvm_model(std::string path, std::string name, std::string hardware, int w, int h, 
                         int batch, int mode, int devid){
-    std::string model_path = path + "/" + cpu + "/" + name + "/" + std::to_string(w) + "_" + std::to_string(h) ;
+    std::string model_path = path + "/" + hardware + "/" + name + "/" + std::to_string(w) + "_" + std::to_string(h);
     tvm::runtime::Module mod_syslib = tvm::runtime::Module::LoadFromFile(model_path + "/deploy_lib.so");
     std::ifstream json_in(model_path + "/deploy_graph.json");
     std::string json_data((std::istreambuf_iterator<char>(json_in)), std::istreambuf_iterator<char>());

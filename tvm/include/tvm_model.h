@@ -16,7 +16,7 @@ using json = nlohmann::json;
 
 class tvm_model {
 public:
-    tvm_model(std::string path, std::string name, std::string cpu, 
+    tvm_model(std::string path, std::string name, std::string hardware, 
                                 int w, int h, int batch=1, int mode=0,int devid=0);
     virtual ~tvm_model(){}
     virtual void prepare(std::vector<float> & image_data, cv::Mat & img);

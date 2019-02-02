@@ -1,8 +1,8 @@
 #include "tvm_mneti.h"
 #include "anchors.h"
-tvm_mneti::tvm_mneti(std::string path, std::string name, std::string cpu, 
+tvm_mneti::tvm_mneti(std::string path, std::string name, std::string hardware, 
             int w, int h, int batch, int mode, int devid):
-                    tvm_model(path, name, cpu, w, h, batch, mode, devid), width(w), height(h){
+                    tvm_model(path, name, hardware, w, h, batch, mode, devid), width(w), height(h){
         generate_anchors_fpn(anchors_fpn, num_anchors);
 }
 

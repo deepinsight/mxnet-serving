@@ -348,8 +348,9 @@ struct tvm_svc {
         catch(std::exception & e) {
             std::cout << e.what() << "\n";
             entry["state"] = -6;
-            entry["error"]  = "opencv exception: ";
-            entry["error"] += e.what();
+            std::string err_str = "opencv exception: ";
+            err_str.append(e.what());
+            entry["error"] = err_str;
             result.push_back(entry);
         }
     }

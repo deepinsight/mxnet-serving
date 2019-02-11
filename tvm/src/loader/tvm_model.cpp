@@ -90,6 +90,7 @@ void tvmOutputOfIndex(  tvm::runtime::PackedFunc handler,   /* handle of get_out
     int size = 1;
     for (int i = 0; i < res->ndim; ++i) {
         size *= res->shape[i];
+        // std::cout << "shape[" << i << "]=" << out_shape[i] << "\n";
     }
     float* data = (float*) res->data;
     out_data.assign(data, data + size);

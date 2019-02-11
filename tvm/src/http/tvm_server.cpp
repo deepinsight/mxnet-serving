@@ -86,6 +86,7 @@ struct tvm_svc {
         res_body.clear();
         boundary.clear();
         result.clear();
+        result = json::object();
         result_info.clear();
         if(request.method != "POST"){
             std::cerr << "request method must be post\n";
@@ -258,19 +259,20 @@ struct tvm_svc {
                 return;
             }
             entry["pose_type"] = pose_type;
-            cv::Mat aligned_img = face_align.Align(img, landmarks);
+            cv::Mat aligned_img = face_align.Align(pad_img, landmarks);
             if(aligned_img.empty()){
                 entry["state"] = -5;
                 entry["error"] =  "failed to find similar transform matrix for face alignment";
                 result.push_back(entry);
                 return;
             }
+            // cv::imwrite("aligned.jpg",aligned_img);
             entry["state"] = 0;
             embeding->infer(aligned_img);
             std::vector<float> features;
             embeding->parse_output(features);
             std::string features_encode = base64_encode((unsigned char* )features.data(), features.size()*sizeof(float) );
-            entry["embedding"] = features_encode;                       
+            entry["embedding"] = features_encode;
             gender->infer(aligned_img);
             entry["gender"] = gender->get_gender();
             age->infer(aligned_img);

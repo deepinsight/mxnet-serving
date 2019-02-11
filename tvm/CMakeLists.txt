@@ -5,6 +5,10 @@ project(tvm_infer)
 add_definitions("-Wall -g -O2")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+if(BenchMark)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBenchMark")
+endif()
+
 find_package( OpenCV REQUIRED )
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")

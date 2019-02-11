@@ -42,6 +42,19 @@ extern int min_width;
 extern int min_height;
 extern int min_area;
 
+#ifdef BenchMark
+#include <sys/time.h>
+static float getElapse(struct timeval *tv1,struct timeval *tv2)
+{
+    float t = 0.0f;
+    if (tv1->tv_sec == tv2->tv_sec)
+        t = (tv2->tv_usec - tv1->tv_usec)/1000.0f;
+    else
+        t = ((tv2->tv_sec - tv1->tv_sec) * 1000 * 1000 + tv2->tv_usec - tv1->tv_usec)/1000.0f;
+    return t;
+}
+#endif
+
 class FaceAlign face_align = FaceAlign();
 
 server::response_header headers[]= {{"Connection", "close"},
@@ -142,6 +155,10 @@ struct tvm_svc {
     void handle_post_read(server::connection::input_range range, 
         boost::system::error_code boost_error, size_t size, 
         server::connection_ptr conn, size_t left2read) {
+        #ifdef BenchMark
+        struct timeval  tv1,tv2,tv3;
+        gettimeofday(&tv1,NULL);
+        #endif            
         if(!boost_error) {
             // std::cout << "read size: " << size << std::endl;
             req_body.append(boost::begin(range), size);
@@ -154,6 +171,10 @@ struct tvm_svc {
                 // std::cout << req_body << "\n";
                 // update content-length
                 formDataParser fdparser(req_body.data(), req_body.length(), boundary);
+                #ifdef BenchMark
+                gettimeofday(&tv2,NULL);
+                std::cout << "form data parse:" <<  getElapse(&tv1, &tv2) << " ms\n";
+                #endif
                 if(fdparser.succeeded()){
                     // std::cout << "form data parse success\n" ;
                     /*
@@ -170,11 +191,19 @@ struct tvm_svc {
                     result = json::array();
                     for(auto & fd :fdparser.fds)
                         face_prcocess(fd);
+                    #ifdef BenchMark
+                    gettimeofday(&tv3,NULL);
+                    std::cout << "face process:" <<  getElapse(&tv2, &tv3) << " ms\n";
+                    #endif
                     conn->set_status(server::connection::ok);
                     res_body = result.dump()+"\n";
                     headers[3].value = std::to_string(res_body.length());
                     conn->set_headers(boost::make_iterator_range(headers, headers + 4));
                     conn->write(res_body);
+                    #ifdef BenchMark
+                    gettimeofday(&tv2,NULL);
+                    std::cout << "write response:" <<  getElapse(&tv3, &tv2) << " ms\n";
+                    #endif
                 } else {
                     std::cout << "form data parse error: " << fdparser.getErrorMessage() << "\n";
                     result_info = "form data parse error: " + fdparser.getErrorMessage();
@@ -185,6 +214,10 @@ struct tvm_svc {
         } else {
             std::cout << "boost error: " << boost_error.message() << "\n";
         }
+        #ifdef BenchMark
+        gettimeofday(&tv2,NULL);
+        std::cout << "handle_post_read:" <<  getElapse(&tv1, &tv2) << " ms\n";
+        #endif
     }
     void read_chunk(size_t left2read, server::connection_ptr conn) {
         // std::cout << "left2read: " << left2read << std::endl;
@@ -200,11 +233,15 @@ struct tvm_svc {
         json entry;
         entry["filename"] = fd.disposition["filename"];
         try{
+            #ifdef BenchMark
+            struct timeval  tv1,tv2;
+            gettimeofday(&tv1,NULL);
+            #endif
             cv::Mat img = cv::imdecode(cv::Mat(1, fd.data.size(), CV_8UC1, (uchar *) fd.data.data()), CV_LOAD_IMAGE_COLOR);
             std::vector<cv::Rect2f>  boxes;
             std::vector<cv::Point2f> landmarks;
             std::vector<float>       scores;
-            std::cout << "decode image size: " << img.size() << "\n";
+            // std::cout << "decode image size: " << img.size() << "\n";
             if(img.cols<min_width or img.rows<min_height){                
                 entry["state"] = -1;
                 entry["error"] = "input image size too small: " + std::to_string(img.cols) + "*" + std::to_string(img.rows);
@@ -229,9 +266,18 @@ struct tvm_svc {
                 int top    = len - bottom;
                 cv::copyMakeBorder( re_img, pad_img, top, bottom, 0, 0, cv::BORDER_CONSTANT );
             }
-
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "image decode:         " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif
             // std::cout << "padding image size: " << pad_img.size() << "\n";
             det->detect(pad_img, boxes, landmarks, scores);
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "face detect:          " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif            
             if(boxes.size()==0){
                 entry["state"] = -2;
                 entry["error"] = "detect no face";
@@ -266,6 +312,11 @@ struct tvm_svc {
                 result.push_back(entry);
                 return;
             }
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "face check and align: " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif            
             // cv::imwrite("aligned.jpg",aligned_img);
             entry["state"] = 0;
             embeding->infer(aligned_img);
@@ -273,10 +324,25 @@ struct tvm_svc {
             embeding->parse_output(features);
             std::string features_encode = base64_encode((unsigned char* )features.data(), features.size()*sizeof(float) );
             entry["embedding"] = features_encode;
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "face embedding:       " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif              
             gender->infer(aligned_img);
             entry["gender"] = gender->get_gender();
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "face gender:          " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif             
             age->infer(aligned_img);
             entry["age"] = age->get_age();
+            #ifdef BenchMark
+            gettimeofday(&tv2,NULL);
+            std::cout << "face age:             " <<  getElapse(&tv1, &tv2) << " ms\n";
+            gettimeofday(&tv1,NULL);
+            #endif             
             result.push_back(entry);
         }
         catch(std::exception & e) {

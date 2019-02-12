@@ -42,6 +42,9 @@ extern int min_width;
 extern int min_height;
 extern int min_area;
 
+bool debug = false;
+int img_count = 0;
+
 #ifdef BenchMark
 #include <sys/time.h>
 static float getElapse(struct timeval *tv1,struct timeval *tv2)
@@ -271,7 +274,10 @@ struct tvm_svc {
             std::cout << "image decode:         " <<  getElapse(&tv1, &tv2) << " ms\n";
             gettimeofday(&tv1,NULL);
             #endif
-            // std::cout << "padding image size: " << pad_img.size() << "\n";
+            if(debug){
+                cv::imwrite("pad-" + std::to_string(img_count) + ".jpg",pad_img);
+                // std::cout << "padding image size: " << pad_img.size() << "\n";
+            }
             det->detect(pad_img, boxes, landmarks, scores);
             #ifdef BenchMark
             gettimeofday(&tv2,NULL);
@@ -316,8 +322,11 @@ struct tvm_svc {
             gettimeofday(&tv2,NULL);
             std::cout << "face check and align: " <<  getElapse(&tv1, &tv2) << " ms\n";
             gettimeofday(&tv1,NULL);
-            #endif            
-            // cv::imwrite("aligned.jpg",aligned_img);
+            #endif   
+            if(debug){
+                cv::imwrite("aligned-" + std::to_string(img_count) + ".jpg",aligned_img);
+                img_count++ ;
+            }
             entry["state"] = 0;
             embeding->infer(aligned_img);
             std::vector<float> features;
@@ -378,6 +387,7 @@ int main(int argc, char *argv[]) {
         "{index              |0                   | cpu mode: server instance index for cpu binding; gpu mode: gpu card }"
         "{cpu-count          |4                   | core count for cpu binding }"
         "{bind-latency       |3                   | latency for cpu binding }"
+        "{debug              |false               | whether run in debug mode }"
     ;
     cv::CommandLineParser parser(argc, argv, keys);
     parser.about("tvm model infer server");
@@ -385,7 +395,7 @@ int main(int argc, char *argv[]) {
         parser.printMessage();
         return 0;
     }
-
+    debug = parser.get<bool>("debug");
     // create model handler
     std::string path = parser.get<cv::String>("path");
     int mode         = parser.get<int>("mode");

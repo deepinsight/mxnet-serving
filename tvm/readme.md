@@ -14,6 +14,8 @@
        "pose_type":0,
        
        "state":0,
+
+       "quality":0.9303406476974487,
        
        "comment":"embedding为base64编码的512长度的float数组，
                   
@@ -55,3 +57,4 @@ state | error
 -5    | failed to find similar transform matrix for face alignment
 -6    | opencv exception
 -7    | face pose skew
+-8    | face norm[] is too small

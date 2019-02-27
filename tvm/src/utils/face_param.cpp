@@ -10,6 +10,7 @@ std::vector<float> face_pose_threshold;
 int min_width =70;
 int min_height=90;
 int min_area=5000;
+float min_quality=0.66;
 
 extern tvm_mneti * det;
 
@@ -25,6 +26,7 @@ void read_conf(std::string conf){
         min_width  = g->get_qualified_as<int>("detector.min_width").value_or(70);
         min_height = g->get_qualified_as<int>("detector.min_height").value_or(90);
         min_area   = g->get_qualified_as<int>("detector.min_area").value_or(5000);
+        min_quality= g->get_qualified_as<double>("detector.min_quality").value_or(0.66);
 
         auto threshold_array = g->get_qualified_array_of<double>("facePoseType.threshold");
         for (const auto& element : *threshold_array){

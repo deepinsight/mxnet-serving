@@ -13,6 +13,14 @@ void vec_norm(std::vector<float> &in, std::vector<float> &out){
   }
 }
 
+float tvm_r100::get_norm(std::vector<float> & in) {
+  float sqare_sum=0;
+  for(size_t i=0;i<in.size();i++){
+    sqare_sum += in[i]*in[i];
+  }
+  return sqrt(sqare_sum);
+}
+
 void tvm_r100::parse_output(std::vector<float> & features){
     features.clear();
     // std::vector<float> norm_features;

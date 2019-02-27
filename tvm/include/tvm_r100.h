@@ -9,6 +9,7 @@ public:
                                 int w, int h, int batch=1, int mode=0, int devid=0):
                     tvm_model(path, name, hardware, w, h, batch, mode, devid){}
     void parse_output(std::vector<float> & features);
+    float get_norm   (std::vector<float> & in);
 };
 
 #endif

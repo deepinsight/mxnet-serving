@@ -41,6 +41,7 @@ tvm_age    * age;
 extern int min_width;
 extern int min_height;
 extern int min_area;
+extern float min_quality;
 
 bool debug = false;
 int img_count = 0;
@@ -327,10 +328,20 @@ struct tvm_svc {
                 cv::imwrite("aligned-" + std::to_string(img_count) + ".jpg",aligned_img);
                 img_count++ ;
             }
-            entry["state"] = 0;
             embeding->infer(aligned_img);
             std::vector<float> features;
             embeding->parse_output(features);
+            float norm = embeding->get_norm(features);
+            float quality = fmin(norm * norm / features.size(), 1.0);
+            if(quality<min_quality){
+                entry["state"] =  -8;
+                entry["error"] =  "face norm[" + std::to_string(norm) + "] is too small";
+                result.push_back(entry);
+                return;
+            } else{
+                entry["state"] = 0;
+                entry["quality"] = quality;
+            }
             std::string features_encode = base64_encode((unsigned char* )features.data(), features.size()*sizeof(float) );
             entry["embedding"] = features_encode;
             #ifdef BenchMark

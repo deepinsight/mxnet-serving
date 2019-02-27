@@ -11,3 +11,4 @@
   min_width  = 70
   min_height = 90
   min_area   = 5000
+  min_quality= 0.66

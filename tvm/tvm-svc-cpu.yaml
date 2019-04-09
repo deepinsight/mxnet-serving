@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: node-label-query
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: node-label-query-role
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: node-label-query-role-binding
+subjects:
+- kind: ServiceAccount
+  name: node-label-query
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: node-label-query-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tvm-server-cpu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tvm-infer-cpu
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: tvm-infer-cpu
+    spec:
+      serviceAccount: node-label-query
+      containers:
+      - image: harbor.infinivision.cn/infinivision/tvm-server
+        imagePullPolicy: Always
+        name: tvm-server-cpu
+        resources:
+          requests:
+            cpu: "8"
+        #command:
+        #  - sleep
+        #  - "10000"
+        env:
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: CPU_COUNT
+          value: "8"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tvm-infer
+  labels:
+    app.kubernetes.io/name: tvm-infer-cpu
+spec:
+  type: NodePort
+  ports:
+  - name: tvm-infer
+    port: 8080
+    targetPort: 8080
+    nodePort: 30080
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: tvm-infer-cpu

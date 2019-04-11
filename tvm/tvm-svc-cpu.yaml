@@ -43,6 +43,10 @@ spec:
         app.kubernetes.io/name: tvm-infer-cpu
     spec:
       serviceAccount: node-label-query
+      volumes:
+        - name: face-conf
+          configMap:
+            name: face-param     
       containers:
       - image: harbor.infinivision.cn/infinivision/tvm-server
         imagePullPolicy: Always
@@ -50,6 +54,9 @@ spec:
         resources:
           requests:
             cpu: "8"
+        volumeMounts:
+        - name: face-conf
+          mountPath: /var/lib/tvm_conf
         #command:
         #  - sleep
         #  - "10000"

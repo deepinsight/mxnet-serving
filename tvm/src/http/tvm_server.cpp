@@ -105,6 +105,12 @@ struct tvm_svc {
         result.clear();
         result = json::object();
         result_info.clear();
+        if(request.method=="GET"){
+            connection->set_status(server::connection::ok);
+            result_info = "";
+            make_response(connection);
+            return;
+        }
         if(request.method != "POST"){
             std::cerr << "request method must be post\n";
             connection->set_status(server::connection::not_supported);

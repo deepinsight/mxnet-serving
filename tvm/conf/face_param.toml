@@ -1,5 +1,5 @@
 [facePoseType]
-  threshold  = [5.0,4.0,4.0,6.0]
+  threshold  = [3.5,3.5,4.0,4.0]
   min_face_size = 5000
   min_ratio = 0.66
   max_ratio = 1

@@ -1,3 +1,12 @@
 [submodule "tvm/deps/multipart-parser"]
 	path = tvm/deps/multipart-parser
 	url = https://github.com/FooBarWidget/multipart-parser
+[submodule "tvm/deps/cpp-toml"]
+	path = tvm/deps/cpp-toml
+	url = https://github.com/skystrife/cpptoml
+[submodule "tvm/deps/json"]
+	path = tvm/deps/json
+	url = https://github.com/nlohmann/json
+[submodule "tvm/deps/cpp-netlib"]
+	path = tvm/deps/cpp-netlib
+	url = https://github.com/cpp-netlib/cpp-netlib

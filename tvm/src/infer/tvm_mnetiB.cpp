@@ -41,7 +41,8 @@ void tvm_mneti::detect(cv::Mat& im, std::vector<cv::Rect2f>  & target_boxes,
             data++;
         }
     }
-    memcpy(infer_buff->data, &image_data[0], sizeof(image_data[0]) * image_data.size());
+    // memcpy(infer_buff->data, &image_data[0], sizeof(image_data[0]) * image_data.size());
+    TVMArrayCopyFromBytes(infer_buff.get(), (void *) &image_data[0], sizeof(image_data[0]) * image_data.size());
     tvm::runtime::PackedFunc set_input = handle->GetFunction("set_input");
     set_input("data", infer_buff.get());
     tvm::runtime::PackedFunc run = handle->GetFunction("run");

@@ -3,6 +3,10 @@
 #include <fstream>
 #include <cassert>
 
+constexpr int dtype_code = kDLFloat;
+constexpr int dtype_bits = 32;
+constexpr int dtype_lanes = 1;
+
 tvm_model::tvm_model(std::string path, std::string name, std::string hardware, int w, int h, 
                         int batch, int mode, int devid){
     std::string model_path = path + "/" + hardware + "/" + name + "/" + std::to_string(w) + "_" + std::to_string(h);
@@ -31,9 +35,6 @@ tvm_model::tvm_model(std::string path, std::string name, std::string hardware, i
     tvm::runtime::PackedFunc load_params = mod.GetFunction("load_params");
     load_params(params_arr);
 
-    constexpr int dtype_code = kDLFloat;
-    constexpr int dtype_bits = 32;
-    constexpr int dtype_lanes = 1;
     //constexpr int device_type = kDLCPU;
     //constexpr int device_id = 0;
     constexpr int in_ndim = 4;
@@ -70,7 +71,8 @@ void tvm_model::infer(cv::Mat & img){
     size_t size = img.channels() * img.rows * img.cols; 
     std::vector<float> image_data(size);
     prepare(image_data, img);
-    memcpy(infer_buff->data, &image_data[0], sizeof(image_data[0]) * image_data.size());
+    // memcpy(infer_buff->data, &image_data[0], sizeof(image_data[0]) * image_data.size());
+    TVMArrayCopyFromBytes(infer_buff.get(), (void *) &image_data[0], sizeof(image_data[0]) * image_data.size());
 
     tvm::runtime::PackedFunc set_input = handle->GetFunction("set_input");
     set_input("data", infer_buff.get());
@@ -92,6 +94,10 @@ void tvmOutputOfIndex(  tvm::runtime::PackedFunc handler,   /* handle of get_out
         size *= res->shape[i];
         // std::cout << "shape[" << i << "]=" << out_shape[i] << "\n";
     }
-    float* data = (float*) res->data;
-    out_data.assign(data, data + size);
+    DLTensor* y;
+    TVMArrayAlloc(res->shape, res->ndim, dtype_code, dtype_bits, dtype_lanes, kDLCPU, 0, &y),
+    res.CopyTo(y);
+    float* dp = (float*) y->data;
+    out_data.assign(dp, dp + size);
+    TVMArrayFree(y);
 }

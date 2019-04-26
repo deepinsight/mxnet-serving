@@ -401,7 +401,7 @@ int main(int argc, char *argv[]) {
         "{path               |/Users/load/code/python/infinivision/tvm-convert/tvm-model | local_id config file }"
         "{cpu-family         |skylake             | cpu architect family name }"
         "{shape              |160,160             | detector model shape }"
-        "{index              |0                   | cpu mode: server instance index for cpu binding; gpu mode: gpu card }"
+        "{index              |0                   | cpu mode: cpu index for first core binding; gpu mode: gpu card index}"
         "{cpu-count          |4                   | core count for cpu binding }"
         "{bind-latency       |3                   | latency for cpu binding }"
         "{debug              |false               | whether run in debug mode }"

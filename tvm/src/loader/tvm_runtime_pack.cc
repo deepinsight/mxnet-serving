@@ -55,10 +55,10 @@
 // #include "src/runtime/metal/metal_device_api.mm"
 // #include "src/runtime/metal/metal_module.mm"
 
-// Uncomment the following lines to enable CUDA
-// #include "src/runtime/cuda/cuda_device_api.cc"
-// #include "src/runtime/cuda/cuda_module.cc"
-
+#ifdef USE_CUDA_INFER
+  #include "src/runtime/cuda/cuda_device_api.cc"
+  #include "src/runtime/cuda/cuda_module.cc"
+#endif
 // Uncomment the following lines to enable OpenCL
 // #include "src/runtime/opencl/opencl_device_api.cc"
 // #include "src/runtime/opencl/opencl_module.cc"

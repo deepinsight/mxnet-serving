@@ -72,7 +72,11 @@ state | error
 |       32 core        |     10     |      190ms      |       5.3        |
 |       32 core        |     20     |      135ms      |       7.4        |
 
-|    GPU    | batch size | average latency | query per second |
-| :-------: | :--------: | :-------------: | :--------------: |
-| Tesla P40 |     20     |      100ms      |        10        |
-| Tesla P40 |     10     |      140ms      |       7.1        |
+| GPU Tesla P40(1 card) | batch size | average latency | query per second |
+| :-------------------: | :--------: | :-------------: | :--------------: |
+|   1 service process   |     1      |     75.8ms      |       13.2       |
+|   1 service process   |     5      |      43ms       |        23        |
+|   1 service process   |     10     |      35ms       |       28.5       |
+|   2 service process   |     1      |     77.9ms      |       24.6       |
+|   2 service process   |     5      |     50.8ms      |       38.3       |
+|   2 service process   |     10     |     55.3ms      |       37.1       |
